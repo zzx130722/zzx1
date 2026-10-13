@@ -1,0 +1,37 @@
+# 虚拟环境（绝对不要提交，每个人本地自己建）
+.venv/
+venv/
+env/
+
+# Python 缓存与编译产物
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 打包 / 构建
+build/
+dist/
+*.egg-info/
+
+# 测试与覆盖率
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter 检查点
+.ipynb_checkpoints/
+
+# 环境变量与密钥（永不提交）
+.env
+*.key
+
+# 编辑器（保留共享配置，忽略个人配置）
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+
+# 操作系统
+.DS_Store
+Thumbs.db

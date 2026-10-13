@@ -1,0 +1,20 @@
+# 统一换行符：仓库内一律用 LF，检出时按平台自动转换
+# 这是比全局 core.autocrlf 更好的做法 —— 配置随仓库走，队友不用各自设置
+* text=auto eol=lf
+
+# 文本文件：参与 diff
+*.py      text diff=python
+*.md      text
+*.txt     text
+*.json    text
+*.toml    text
+
+# 二进制文件：禁止 diff 与换行符转换
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.xlsx    binary
+*.zip     binary
+*.vsix    binary
