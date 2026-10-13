@@ -1,0 +1,6 @@
+# 项目依赖清单
+# 原则：只写直接用到的包，用 `pip freeze > requirements.txt` 可导出完整版本树
+pandas>=2.2.3
+
+# Notebook 内核：任务三的 Jupyter 练习靠它运行（VS Code 会调用）
+ipykernel>=6.29
