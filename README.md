@@ -157,17 +157,29 @@ code --install-extension charliermarsh.ruff
 
 ```
 dev-basics/
+├── .git/                   # Git 仓库（已初始化，分支 main）
 ├── .venv/                  # 虚拟环境（已创建，不提交）
 ├── .vscode/
 │   ├── settings.json       # 已锁定解释器为 .venv，保存自动格式化
 │   └── extensions.json     # 推荐插件清单
+├── .gitattributes          # 统一换行符为 LF
 ├── .gitignore              # 已包含 venv / 缓存 / 密钥 / Jupyter 检查点
 ├── hello.py                # 环境自检脚本
 ├── requirements.txt        # 依赖清单
+├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
 └── README.md               # 本文件
 ```
 
 后续任务三的产物建议放这里：`leetcode/`（3 个题解）+ `pandas/`（2 个 notebook）。
+
+### 相关文档
+
+- **任务一（本文件）**：环境搭建、多版本 Python 陷阱、插件安装、全量验收报告
+- **[GIT-WORKFLOW.md](GIT-WORKFLOW.md)**：任务二 Git 实操手册——三区模型、规范提交、分支与 PR 流程、急救手册
+
+### Git 现状
+
+仓库已初始化并完成 4 次提交，远程 `origin` 当前指向**本地远程仓库**（`../local-remote/dev-basics.git`），用于在没有 GitHub 账号时练通 push / PR 全流程。注册账号后换地址即可接管，详见 GIT-WORKFLOW.md 第五节。
 
 ---
 
