@@ -9,7 +9,7 @@
 |---|---|---|
 | ① 开发环境搭建 | ✅ 完成 | `.venv/` + 全套配置，9 项实测通过 |
 | ② Git 基础补课 | ✅ 完成 | **10 次规范提交**，全部已推送到 GitHub |
-| ④ Prompt 基础三原则 | 🟡 内容已产出，待实战 | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) |
+| ④ Prompt 基础三原则 | 🟡 已开始实战（见 PROMPT-LAB） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md) |
 | ③ AI 工具初体验 | 🟡 LeetCode 3 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
 
 ---
@@ -36,10 +36,11 @@
 
 ## 🟡 任务四：Prompt 基础三原则
 
-内容已写成 `PROMPT-GUIDE.md`，但**还没实际用过一次**——光看不算学会。
+内容已写成 [PROMPT-GUIDE.md](PROMPT-GUIDE.md)，并已在 [PROMPT-LAB.md](PROMPT-LAB.md) 里开始记录实战。
 
-- [ ] 用文档里的填空模板，**自己写一个 prompt** 让我做 Two Sum
-- [ ] 对比一下：笼统问法 vs 完整问法，AI 的回应差多少
+- [x] **第一次实战**（2026-10-14）：把 Two Sum 题目原文直接当 prompt 丢过来
+      → 按模板体检查出 **8 个槽位只填了 1 个**，详见 PROMPT-LAB.md 实验 1
+- [ ] 用完整模板**重写同一个需求**，对比 AI 回应的差别（这是任务四真正的验收动作）
 - [ ] 记住自检三问：它需要猜什么？这是一件事还是几件事？有没有说"不要什么"？
 
 ## 🟡 任务三：AI 工具初体验

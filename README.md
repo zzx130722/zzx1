@@ -174,6 +174,7 @@ dev-basics/
 │   └── README.md               #   题解说明与验收标准
 ├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
 ├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
+├── PROMPT-LAB.md           # 任务四：Prompt 实战记录（每次实验一条）
 ├── PROGRESS.md             # 学习进度看板（四任务状态 + 勾选清单）
 └── README.md               # 本文件
 ```
@@ -185,6 +186,7 @@ dev-basics/
 - **任务一（本文件）**：环境搭建、多版本 Python 陷阱、插件安装、全量验收报告
 - **[GIT-WORKFLOW.md](GIT-WORKFLOW.md)**：任务二 Git 实操手册——三区模型、规范提交、分支与 PR 流程、急救手册
 - **[PROMPT-GUIDE.md](PROMPT-GUIDE.md)**：任务四 Prompt 三原则——上下文给足 / 任务拆小 / 约束明确，含填空模板与四个实战范例
+- **[PROMPT-LAB.md](PROMPT-LAB.md)**：任务四实战记录——逐条记下实际用的 prompt 与效果，附体检表
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
 - **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——三个算法套路、易错边界用例与验收标准
 
