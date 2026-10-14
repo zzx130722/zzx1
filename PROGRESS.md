@@ -1,6 +1,6 @@
 # 学习进度
 
-> 最后更新：2026-10-14 11:45
+> 最后更新：2026-10-14 16:40
 > 实际执行顺序已调整为 **① → ② → ④ → ③**（④ 是方法层，不依赖环境，却是 ③ 的效率前置）
 
 ## 总览
@@ -10,7 +10,7 @@
 | ① 开发环境搭建 | ✅ 完成 | `.venv/` + 全套配置，9 项实测通过 |
 | ② Git 基础补课 | ✅ 完成 | **10 次规范提交**，全部已推送到 GitHub |
 | ④ Prompt 基础三原则 | 🟡 已开始实战（见 PROMPT-LAB） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md) |
-| ③ AI 工具初体验 | 🟡 LeetCode 3 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
+| ③ AI 工具初体验 | 🟡 LeetCode 4 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
 
 ---
 
@@ -50,15 +50,19 @@
 
 ## 🟡 任务三：AI 工具初体验
 
-**LeetCode 部分已完成**（3 题 / 25 个用例全部通过），Pandas 部分未开始。
+**LeetCode 部分已完成**（4 题 / 35 个用例全部通过），Pandas 部分未开始。
 
-- [x] `leetcode/` 三个题解文件（各含题目、思路、复杂度、边界用例与自测）
+- [x] `leetcode/` 四个题解文件（各含题目、思路、复杂度、边界用例与自测）
   - [x] Two Sum（哈希表）—— 最易错：`[3,3], target=6` 必须返回 `[0,1]`
   - [x] Valid Parentheses（栈）—— 最易错：`"([)]"` 数量对但顺序错
   - [x] Merge Two Sorted Lists（链表 / 双指针）—— 最易错：`[] + [0]`
+  - [x] Search Insert Position（二分查找）—— 最易错：`target=7` 要返回 `len(nums)`
 - [x] `leetcode/run_all.py` 一键自测入口
 - [x] `leetcode/LEETCODE-HOWTO.md` —— 怎么把题解提交到 LeetCode 网站
       （含可逐字粘贴的代码、七步操作、八种常见报错对照；粘贴版已按判题调用方式实测 20/20）
+- [x] 两份面向零基础的逐行讲解 + 可交互图解
+  - [x] [two_sum_walkthrough.md](leetcode/two_sum_walkthrough.md) + [two_sum_visual.html](leetcode/two_sum_visual.html)
+  - [x] [search_insert_walkthrough.md](leetcode/search_insert_walkthrough.md) + [search_insert_visual.html](leetcode/search_insert_visual.html)
 - [ ] **在 LeetCode 网站上实际提交通过一题**（拿到绿色「通过」）
 - [ ] **验收（关键）**：不看代码，能用自己的话复述每道题的思路 + 说出最易错的边界用例
 - [ ] `pandas/` 建两个 notebook
@@ -76,7 +80,7 @@ source .venv/Scripts/activate
 # 运行自检脚本
 python hello.py
 
-# 一键跑三道 LeetCode 题解的自测
+# 一键跑四道 LeetCode 题解的自测
 python leetcode/run_all.py
 ```
 
@@ -86,15 +90,24 @@ python leetcode/run_all.py
 
 - 远程：`https://github.com/zzx130722/zzx1.git`（分支 `main`）
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
-- ✅ **10 个提交全部在远程**，逐条核验 GitHub 上均归属 `zzx130722`
-- 本地与远程完全同步（HEAD = `a42489d`），无 ahead / behind
-- 工作区**完全干净**，无未提交改动
-- 仓库文件 9 项（`.venv` 未被追踪，验证通过）
-- 备份仍在：标签 `backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
+- 本地共 **27 个提交**（含本条进度记录的更新），远程 **21 个**（`3aa5082`）
+- ⚠️ **本地领先远程 6 个提交**，需要你自己推一次：
+  - 上次遗留的 2 个（Two Sum 的 prompt 记录等）
+  - 本次新增的 4 个（二分题解 / 讲解与图解 / 并入自测 / 本条进度更新）
+- 仓库追踪文件 22 项（`.venv` 仍未追踪）
+- 备份标签仍在：`backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
 
 ## 推送备忘（重要）
 
 **推送必须用系统终端，不能用工具打开的 VS Code 集成终端。**
 
 后者的环境变量里带着沙箱代理，访问 github.com 会报 `CONNECT tunnel failed, response 502`。
-做法：`Win + R` → `powershell` → `cd` 到项目 → `git push`（凭证已缓存，不会再要求登录）。
+做法：`Win + R` → `powershell` → 切到项目目录 → 执行两条命令：
+
+```powershell
+cd $HOME\WorkBuddy\2026-10-13-16-35-32\dev-basics
+git push
+```
+
+（凭证已缓存，不会再要求登录。）推完可以再跑一次 `git status` 确认显示
+`Your branch is up to date with 'origin/main'`。
