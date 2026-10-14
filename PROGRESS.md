@@ -1,6 +1,6 @@
 # 学习进度
 
-> 最后更新：2026-10-13 17:59
+> 最后更新：2026-10-14 11:45
 > 实际执行顺序已调整为 **① → ② → ④ → ③**（④ 是方法层，不依赖环境，却是 ③ 的效率前置）
 
 ## 总览
@@ -8,9 +8,9 @@
 | 任务 | 状态 | 产出 |
 |---|---|---|
 | ① 开发环境搭建 | ✅ 完成 | `.venv/` + 全套配置，9 项实测通过 |
-| ② Git 基础补课 | ✅ 完成 | 6 次规范提交，已推送到 GitHub |
+| ② Git 基础补课 | ✅ 完成 | **10 次规范提交**，全部已推送到 GitHub |
 | ④ Prompt 基础三原则 | 🟡 内容已产出，待实战 | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) |
-| ③ AI 工具初体验 | ⬜ 未开始 | 待建 `leetcode/` + `pandas/` |
+| ③ AI 工具初体验 | 🟡 LeetCode 3 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
 
 ---
 
@@ -28,9 +28,10 @@
 
 - [x] `.gitignore` 生效验证（`.venv` 被追踪文件数 = 0）
 - [x] `.gitattributes` 统一换行符
-- [x] 6 次规范提交（chore / feat / docs 三种类型 + 1 次 `--no-ff` 合并）
+- [x] 10 次规范提交（chore / feat / docs 三种类型 + 1 次 `--no-ff` 合并）
 - [x] 走通 分支 → 提交 → 推送 → 合并 → 删分支 全流程
 - [x] 推送到真实 GitHub：`https://github.com/zzx130722/zzx1`
+- [x] 提交作者统一归属到自己的账号（重写历史 + 强推验证）
 - [ ] 熟悉 `git blame` / `git revert`（可选进阶）
 
 ## 🟡 任务四：Prompt 基础三原则
@@ -41,16 +42,19 @@
 - [ ] 对比一下：笼统问法 vs 完整问法，AI 的回应差多少
 - [ ] 记住自检三问：它需要猜什么？这是一件事还是几件事？有没有说"不要什么"？
 
-## ⬜ 任务三：AI 工具初体验
+## 🟡 任务三：AI 工具初体验
 
-- [ ] `leetcode/` 建三个题解文件
-  - [ ] Two Sum（哈希表）
-  - [ ] Valid Parentheses（栈）
-  - [ ] Merge Two Sorted Lists（链表）
+**LeetCode 部分已完成**（3 题 / 25 个用例全部通过），Pandas 部分未开始。
+
+- [x] `leetcode/` 三个题解文件（各含题目、思路、复杂度、边界用例与自测）
+  - [x] Two Sum（哈希表）—— 最易错：`[3,3], target=6` 必须返回 `[0,1]`
+  - [x] Valid Parentheses（栈）—— 最易错：`"([)]"` 数量对但顺序错
+  - [x] Merge Two Sorted Lists（链表 / 双指针）—— 最易错：`[] + [0]`
+- [x] `leetcode/run_all.py` 一键自测入口
+- [ ] **验收（关键）**：不看代码，能用自己的话复述每道题的思路 + 说出最易错的边界用例
 - [ ] `pandas/` 建两个 notebook
   - [ ] 读 CSV + `groupby` 聚合
   - [ ] 缺失值处理 + `merge` 合并
-- [ ] **验收标准**：不看答案能自己讲出思路 + 说出边界用例（能讲出来才算过）
 
 ---
 
@@ -62,6 +66,9 @@ source .venv/Scripts/activate
 
 # 运行自检脚本
 python hello.py
+
+# 一键跑三道 LeetCode 题解的自测
+python leetcode/run_all.py
 ```
 
 > ⚠️ 别直接用全局 `python`：PATH 首位是工具自带的运行时，会命中错误的解释器。
@@ -70,9 +77,15 @@ python hello.py
 
 - 远程：`https://github.com/zzx130722/zzx1.git`（分支 `main`）
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
-- ✅ 6 个历史提交已重写作者（原先归属在 `cuishiyong` 账号下），**并已强推成功**，
-  远程 6 个提交逐条核验均归属 `zzx130722`
-- 本地与远程完全同步（HEAD = `3146028`）
+- ✅ **10 个提交全部在远程**，逐条核验 GitHub 上均归属 `zzx130722`
+- 本地与远程完全同步（HEAD = `a42489d`），无 ahead / behind
+- 工作区**完全干净**，无未提交改动
+- 仓库文件 9 项（`.venv` 未被追踪，验证通过）
 - 备份仍在：标签 `backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
-- **待提交**：本文件、`PROMPT-GUIDE.md`、`README.md`、`GIT-WORKFLOW.md`、`.vscode/settings.json`
-  → 计划并入任务三的提交
+
+## 推送备忘（重要）
+
+**推送必须用系统终端，不能用工具打开的 VS Code 集成终端。**
+
+后者的环境变量里带着沙箱代理，访问 github.com 会报 `CONNECT tunnel failed, response 502`。
+做法：`Win + R` → `powershell` → `cd` 到项目 → `git push`（凭证已缓存，不会再要求登录）。

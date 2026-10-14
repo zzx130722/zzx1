@@ -166,13 +166,19 @@ dev-basics/
 ├── .gitignore              # 已包含 venv / 缓存 / 密钥 / Jupyter 检查点
 ├── hello.py                # 环境自检脚本
 ├── requirements.txt        # 依赖清单
+├── leetcode/               # 任务三：3 道简单题题解 + 一键自测
+│   ├── two_sum.py              #   1. 两数之和（哈希表）
+│   ├── valid_parentheses.py    #  20. 有效的括号（栈）
+│   ├── merge_two_sorted_lists.py  # 21. 合并两个有序链表（双指针）
+│   ├── run_all.py              #   一键跑全部题解的自测
+│   └── README.md               #   题解说明与验收标准
 ├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
 ├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
 ├── PROGRESS.md             # 学习进度看板（四任务状态 + 勾选清单）
 └── README.md               # 本文件
 ```
 
-后续任务三的产物建议放这里：`leetcode/`（3 个题解）+ `pandas/`（2 个 notebook）。
+任务三剩余产物：`pandas/`（2 个 notebook —— 读 CSV + groupby 聚合；缺失值处理 + merge 合并）。
 
 ### 相关文档
 
@@ -180,6 +186,7 @@ dev-basics/
 - **[GIT-WORKFLOW.md](GIT-WORKFLOW.md)**：任务二 Git 实操手册——三区模型、规范提交、分支与 PR 流程、急救手册
 - **[PROMPT-GUIDE.md](PROMPT-GUIDE.md)**：任务四 Prompt 三原则——上下文给足 / 任务拆小 / 约束明确，含填空模板与四个实战范例
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
+- **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——三个算法套路、易错边界用例与验收标准
 
 ### Git 现状
 
