@@ -171,7 +171,9 @@ dev-basics/
 │   ├── valid_parentheses.py    #  20. 有效的括号（栈）
 │   ├── merge_two_sorted_lists.py  # 21. 合并两个有序链表（双指针）
 │   ├── run_all.py              #   一键跑全部题解的自测
-│   └── README.md               #   题解说明与验收标准
+│   ├── README.md               #   题解说明与验收标准
+│   ├── LEETCODE-HOWTO.md       #   怎么把题解提交到 LeetCode 网站
+│   └── two_sum_walkthrough.md  #   两数之和的新手逐行详解
 ├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
 ├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
 ├── PROMPT-LAB.md           # 任务四：Prompt 实战记录（每次实验一条）
@@ -189,10 +191,12 @@ dev-basics/
 - **[PROMPT-LAB.md](PROMPT-LAB.md)**：任务四实战记录——逐条记下实际用的 prompt 与效果，附体检表
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
 - **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——三个算法套路、易错边界用例与验收标准
+- **[leetcode/LEETCODE-HOWTO.md](leetcode/LEETCODE-HOWTO.md)**：怎么把题解跑到 LeetCode 网站上——可粘贴代码、页面七步、报错对照表
+- **[leetcode/two_sum_walkthrough.md](leetcode/two_sum_walkthrough.md)**：两数之和的新手逐行详解——两种解法对比、示例走查、实测性能
 
 ### Git 现状
 
-仓库已推送到 GitHub：**[zzx130722/zzx1](https://github.com/zzx130722/zzx1)**，6 次提交全部同步。
+仓库已推送到 GitHub：**[zzx130722/zzx1](https://github.com/zzx130722/zzx1)**（提交历史与推送状态见 [PROGRESS.md](PROGRESS.md)）。
 
 远程 `origin` 曾临时指向本地裸仓库（`../local-remote/dev-basics.git`），用于在没有账号时练通 push / PR 全流程；现已切换为 GitHub 真实地址。切换方式见 GIT-WORKFLOW.md 第五节。
 

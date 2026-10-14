@@ -57,6 +57,9 @@
   - [x] Valid Parentheses（栈）—— 最易错：`"([)]"` 数量对但顺序错
   - [x] Merge Two Sorted Lists（链表 / 双指针）—— 最易错：`[] + [0]`
 - [x] `leetcode/run_all.py` 一键自测入口
+- [x] `leetcode/LEETCODE-HOWTO.md` —— 怎么把题解提交到 LeetCode 网站
+      （含可逐字粘贴的代码、七步操作、八种常见报错对照；粘贴版已按判题调用方式实测 20/20）
+- [ ] **在 LeetCode 网站上实际提交通过一题**（拿到绿色「通过」）
 - [ ] **验收（关键）**：不看代码，能用自己的话复述每道题的思路 + 说出最易错的边界用例
 - [ ] `pandas/` 建两个 notebook
   - [ ] 读 CSV + `groupby` 聚合
