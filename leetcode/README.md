@@ -23,6 +23,11 @@
 | [valid_parentheses.py](valid_parentheses.py) | 20. 有效的括号 | 栈、后进先出 | O(n) | O(n) |
 | [merge_two_sorted_lists.py](merge_two_sorted_lists.py) | 21. 合并两个有序链表 | 双指针、哑节点 | O(m+n) | O(1) |
 
+> 📖 两数之和另有一份**面向零基础**的逐行讲解：
+> [two_sum_walkthrough.md](two_sum_walkthrough.md) ——
+> 从"数组和下标是什么"讲起，两种解法各写一遍、每行都拆开解释，
+> 附实测性能数据与三个新手常见坑。
+
 ## 三个套路，各记一句话
 
 **哈希表（Two Sum）** —— 暴力解法慢在"重复地找另一半"。用字典把"见过的数"存下来，
