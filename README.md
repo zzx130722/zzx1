@@ -167,6 +167,8 @@ dev-basics/
 ├── hello.py                # 环境自检脚本
 ├── requirements.txt        # 依赖清单
 ├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
+├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
+├── PROGRESS.md             # 学习进度看板（四任务状态 + 勾选清单）
 └── README.md               # 本文件
 ```
 
@@ -176,10 +178,14 @@ dev-basics/
 
 - **任务一（本文件）**：环境搭建、多版本 Python 陷阱、插件安装、全量验收报告
 - **[GIT-WORKFLOW.md](GIT-WORKFLOW.md)**：任务二 Git 实操手册——三区模型、规范提交、分支与 PR 流程、急救手册
+- **[PROMPT-GUIDE.md](PROMPT-GUIDE.md)**：任务四 Prompt 三原则——上下文给足 / 任务拆小 / 约束明确，含填空模板与四个实战范例
+- **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
 
 ### Git 现状
 
-仓库已初始化并完成 4 次提交，远程 `origin` 当前指向**本地远程仓库**（`../local-remote/dev-basics.git`），用于在没有 GitHub 账号时练通 push / PR 全流程。注册账号后换地址即可接管，详见 GIT-WORKFLOW.md 第五节。
+仓库已推送到 GitHub：**[zzx130722/zzx1](https://github.com/zzx130722/zzx1)**，6 次提交全部同步。
+
+远程 `origin` 曾临时指向本地裸仓库（`../local-remote/dev-basics.git`），用于在没有账号时练通 push / PR 全流程；现已切换为 GitHub 真实地址。切换方式见 GIT-WORKFLOW.md 第五节。
 
 ---
 

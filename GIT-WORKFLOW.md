@@ -225,8 +225,11 @@ git commit -m "feat: 添加环境自检脚本与依赖清单"
 git add README.md
 git commit -m "docs: 补充开发环境搭建执行手册"
 
-git remote add origin <本地远程路径>       # 现阶段用本地远程代替 GitHub
+git remote add origin <仓库地址>           # 先接本地裸仓库练手，后切换为 GitHub 真实地址
 git push -u origin main                   # 首次推送，建立追踪关系
+# → 会触发一次浏览器授权，成功后凭证存入 Windows 凭证管理器，之后无需重复登录
 ```
 
-三个提交、三种类型，各自独立、语义清晰——这就是"规范提交"的样板。
+四个提交、四种类型，各自独立、语义清晰——这就是"规范提交"的样板。
+
+> 最终远程地址：`https://github.com/zzx130722/zzx1.git`（实测推送成功，6 个提交全部同步）。
