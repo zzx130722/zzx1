@@ -173,6 +173,7 @@ dev-basics/
 │   ├── run_all.py              #   一键跑全部题解的自测
 │   ├── README.md               #   题解说明与验收标准
 │   ├── LEETCODE-HOWTO.md       #   怎么把题解提交到 LeetCode 网站
+│   ├── two_sum_visual.html     #   两数之和可交互图解（浏览器打开）
 │   └── two_sum_walkthrough.md  #   两数之和的新手逐行详解
 ├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
 ├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
@@ -193,6 +194,7 @@ dev-basics/
 - **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——三个算法套路、易错边界用例与验收标准
 - **[leetcode/LEETCODE-HOWTO.md](leetcode/LEETCODE-HOWTO.md)**：怎么把题解跑到 LeetCode 网站上——可粘贴代码、页面七步、报错对照表
 - **[leetcode/two_sum_walkthrough.md](leetcode/two_sum_walkthrough.md)**：两数之和的新手逐行详解——两种解法对比、示例走查、实测性能
+- **[leetcode/two_sum_visual.html](leetcode/two_sum_visual.html)**：两数之和可交互图解——点着按钮看算法逐轮推进，可对比「先查再存 / 先存再查」
 
 ### Git 现状
 

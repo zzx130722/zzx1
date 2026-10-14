@@ -20,6 +20,12 @@
 本地文件**不能直接粘进 LeetCode**（入口函数名、类型提示都不一样）。
 可直接粘贴的版本、页面操作步骤、常见报错对照，都写在 **[LEETCODE-HOWTO.md](LEETCODE-HOWTO.md)** 里。
 
+### 想先弄懂题目本身？
+
+两数之和有一份**可交互的图解页面**：**[two_sum_visual.html](two_sum_visual.html)** ——
+点按钮就能看算法一轮一轮怎么走，还能切换「先查再存 / 先存再查」，
+亲眼看到错误是怎么产生的。文字版详述在 **[two_sum_walkthrough.md](two_sum_walkthrough.md)**。
+
 ## 题目一览
 
 | 文件 | 题目 | 考点 | 时间 | 空间 |
