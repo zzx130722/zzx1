@@ -35,7 +35,7 @@ LeetCode 的流程是反过来的——**它用隐藏用例来测你**。留着 
 
 ---
 
-## 二、三道题的可直接粘贴代码
+## 二、四道题的可直接粘贴代码
 
 以下是**逐字对应 LeetCode 中文站 Python3 模板**的版本，可以直接全选粘贴。
 
@@ -120,6 +120,37 @@ class Solution:
         return dummy.next
 ```
 
+### 题目 4：搜索插入位置
+
+题目地址：<https://leetcode.cn/problems/search-insert-position/>
+
+> ⚠️ 这题题目里明写着 **「请必须使用时间复杂度为 O(log n) 的算法」**。
+> 用 `for` 循环一个个扫是能通过的（测试数据不大），但不符合题目要求，
+> 面试时也会被判不合格——一定要用二分。
+
+```python
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        # 左闭右开区间 [left, right)：右边 left == right 时区间为空
+        left, right = 0, len(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] < target:
+                # 中间值太小，mid 和它左边全排除
+                left = mid + 1
+            else:
+                # 中间值够大，mid 本身可能是答案，必须保留
+                right = mid
+        # 循环结束时 left == right，正是"第一个 >= target 的位置"
+        # 若 target 比所有数都大，left 会自然停在 len(nums)，即插入到末尾
+        return left
+```
+
+> 三个最容易踩的边界：`while left < right` 不能写成 `<=`；
+> `right = mid` 不能写成 `mid - 1`；`target` 比所有数都大时答案等于 `len(nums)`。
+> 详细推导见 [search_insert_walkthrough.md](search_insert_walkthrough.md)，
+> 想看动态过程就打开 [search_insert_visual.html](search_insert_visual.html)。
+
 ---
 
 ## 三、页面上怎么操作（七步）
@@ -164,23 +195,28 @@ class Solution:
 | 报错 / 现象 | 原因 | 怎么改 |
 |---|---|---|
 | `NameError: name 'Solution' is not defined` | 忘了写 `class Solution:` 这一行 | 检查最外层是不是 `class Solution:` |
-| `AttributeError: 'Solution' object has no attribute 'twoSum'` | 方法名拼错了 | 必须是 `twoSum` / `isValid` / `mergeTwoLists` |
+| `AttributeError: 'Solution' object has no attribute 'twoSum'` | 方法名拼错了 | 必须是 `twoSum` / `isValid` / `mergeTwoLists` / `searchInsert` |
 | 提示「无返回值」或输出 `null` | 函数里没 `return`，或 `return` 在 `if` 里面漏了 | 检查每条分支都有返回值 |
 | `IndentationError` / `TabError` | 粘贴时缩进乱了（Tab 和空格混用） | 全选删除后重新粘；粘贴时选"粘贴"而不是"粘贴并匹配样式" |
 | `NameError: name 'List' is not defined` | 少了 `from typing import List` | 把第一行的导入补上 |
 | `TypeError: ... takes 2 positional arguments but 3 were given` | 方法忘了写 `self` 参数 | 第一个参数必须是 `self` |
 | 写着"解答错误"，但本地明明能跑 | **用错了方法名或漏了 `self`** —— 平台根本没调到你的代码 | 对照上面的报错表逐条查 |
-| 显示"超出时间限制"（TLE） | 用了 O(n²) 的暴力解法 | 换成哈希表版（就是本文给的版本） |
+| 显示"超出时间限制"（TLE） | 用了 O(n²) 的暴力解法 | 两数之和换哈希表版；搜索插入位置换二分的 `while` 版 |
 
 ---
 
 ## 六、你现在可以做的练习（建议按顺序）
 
-1. **把三道题都提交一遍**，拿到三个绿色的「通过」。
+1. **把四道题都提交一遍**，拿到四个绿色的「通过」。
 2. **故意改坏一次**：把两数之和的"先查再存"改成"先存再查"，
    用 `[3,3]` 这个测试用例运行——看它真的输出 `[0,0]`。
    **看过一次错误，比看十遍正确更记得住。**
-3. **提交记录会留在你的账号里**，形成一条成长轨迹。
+3. **再故意改坏一次（二分专用）**：把搜索插入位置的 `right = mid` 改成 `right = mid - 1`，
+   跑一遍 `nums = [1,3,5,6], target = 5`——本地会看到返回 1 而不是 2。
+   这一处是最经典的二分边界错误，亲手踩一次就再也忘不掉。
+   （注意：这种错法在多数用例上仍然是"对的"，所以光试几个数发现不了，
+   必须专门挑那个能把边界戳出来的用例。）
+4. **提交记录会留在你的账号里**，形成一条成长轨迹。
    以后回看自己的代码，能明显看出进步。
 
 > 最后提醒：**拿到绿色「通过」不等于学会。**
