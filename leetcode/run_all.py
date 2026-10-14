@@ -18,11 +18,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-# 顺序 = 建议的刷题顺序：哈希表 -> 栈 -> 链表
+# 顺序 = 建议的刷题顺序：哈希表 -> 栈 -> 链表 -> 二分
 SOLUTIONS = [
     ("two_sum.py", "两数之和", "哈希表"),
     ("valid_parentheses.py", "有效的括号", "栈"),
     ("merge_two_sorted_lists.py", "合并两个有序链表", "链表 / 双指针"),
+    ("search_insert.py", "搜索插入位置", "二分查找"),
 ]
 
 
