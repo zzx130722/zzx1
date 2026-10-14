@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>两数之和 · 图解版（可点着走）</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#ffffff; --text:#1a1d21; --muted:#6b7280; --line:#e3e5e8; --soft:#f3f4f6;
+    --blue-bg:#e6f1fb; --blue-line:#85b7eb; --blue-text:#185fa5;
+    --amber-bg:#faeeda; --amber-line:#ef9f27; --amber-text:#854f0b;
+    --green-bg:#eaf3de; --green-line:#97c459; --green-text:#3b6d11;
+    --red-bg:#fcebeb; --red-line:#f09595; --red-text:#a32d2d;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Courier New",monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#131518; --card:#1c1f23; --text:#e8eaed; --muted:#9aa0a6; --line:#2e3238; --soft:#24282d;
+      --blue-bg:#0c2841; --blue-line:#378add; --blue-text:#b5d4f4;
+      --amber-bg:#3a2506; --amber-line:#ba7517; --amber-text:#fac775;
+      --green-bg:#1e3208; --green-line:#639922; --green-text:#c0dd97;
+      --red-bg:#401212; --red-line:#e24b4a; --red-text:#f7c1c1;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+       font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-size:22px;font-weight:600;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 26px}
+  h2{font-size:16px;font-weight:600;margin:0 0 4px}
+  .step-no{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+           border-radius:50%;background:var(--blue-bg);color:var(--blue-text);
+           font-size:12px;font-weight:600;margin-right:8px;vertical-align:2px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+        padding:20px 22px;margin-bottom:18px}
+  .hint{color:var(--muted);font-size:13px;margin:6px 0 16px}
+  p{margin:0 0 12px}
+  .arr{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0 6px}
+  .cw{width:64px;text-align:center}
+  .cw .idx{font-size:11px;color:var(--muted);margin-bottom:4px;font-family:var(--mono)}
+  .chip{height:52px;display:flex;align-items:center;justify-content:center;
+        border-radius:10px;border:1.5px solid var(--line);background:var(--soft);
+        font-size:19px;font-weight:600;transition:all .18s ease}
+  .chip.i{border-color:var(--blue-line);background:var(--blue-bg);color:var(--blue-text)}
+  .chip.j{border-color:var(--amber-line);background:var(--amber-bg);color:var(--amber-text)}
+  .chip.hit{border-color:var(--green-line);background:var(--green-bg);color:var(--green-text)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:10px 0 0}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:0}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:14px 0}
+  button{font:inherit;font-size:13px;padding:7px 16px;border-radius:8px;
+         border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer}
+  button:hover{border-color:var(--muted)}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  button.primary{background:var(--blue-bg);border-color:var(--blue-line);color:var(--blue-text);font-weight:600}
+  .status{border-radius:10px;padding:12px 14px;background:var(--soft);
+          font-family:var(--mono);font-size:13px;line-height:1.9;min-height:52px}
+  .status.ok{background:var(--green-bg);color:var(--green-text)}
+  .status.bad{background:var(--red-bg);color:var(--red-text)}
+  .kv{display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+      background:var(--soft);border-radius:10px;padding:11px 14px;margin:12px 0;font-family:var(--mono);font-size:13px}
+  .kv b{font-weight:600}
+  .tag{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--blue-bg);color:var(--blue-text)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{font-weight:600;color:var(--muted);font-size:12px}
+  pre{background:var(--soft);border-radius:10px;padding:14px 16px;overflow-x:auto;
+      font-family:var(--mono);font-size:13px;line-height:1.75;margin:12px 0}
+  .bad-code{border-left:3px solid var(--red-line)}
+  .good-code{border-left:3px solid var(--green-line)}
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .mini{border:1px solid var(--line);border-radius:12px;padding:16px}
+  .mini.good{background:var(--green-bg);border-color:var(--green-line);color:var(--green-text)}
+  .mini.bad{background:var(--red-bg);border-color:var(--red-line);color:var(--red-text)}
+  .mini h3{margin:0 0 8px;font-size:14px;font-weight:600}
+  .mini p{margin:0 0 6px;font-size:13px;opacity:.9}
+  ul{padding-left:20px;margin:8px 0}
+  li{margin-bottom:6px}
+  .chk{list-style:none;padding-left:0}
+  .chk li{padding-left:26px;position:relative}
+  .chk li::before{content:"";position:absolute;left:0;top:5px;width:15px;height:15px;
+                  border:1.5px solid var(--muted);border-radius:4px}
+  .note{font-size:13px;color:var(--muted);border-left:3px solid var(--line);padding-left:12px;margin:14px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>两数之和 · 图解版</h1>
+  <p class="sub">LeetCode 1. Two Sum　难度：简单　—— 点着按钮，看算法一轮一轮怎么走</p>
+
+  <div class="card">
+    <h2>先弄清题目在说什么</h2>
+    <p class="hint">数组就是「一排格子」，下标就是「格子的编号」，Python 里从 0 开始数。</p>
+    <div class="arr" id="introArr"></div>
+    <p style="margin-top:14px">target = 9，也就是要在一排格子里挑两个，让里面的数加起来等于 9，然后报出这两格的编号。</p>
+    <p>答案：<b>[0, 1]</b>，因为 nums[0] + nums[1] = 2 + 7 = 9。</p>
+    <div class="note">
+      题目还有两条限制：一是「每种输入只会对应一个答案」（不用考虑找不到或多组答案）；
+      二是「不能使用两次相同的元素」—— <b>不能拿同一个格子用两遍</b>。第二条后面会成为一个大坑。
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="step-no">1</span>方法一：所有配对都试一遍</h2>
+    <p class="hint">最直白的做法。这里故意换一个 target = 26，好让你看清循环是怎么一步步走完的。</p>
+    <div class="arr" id="bruteArr"></div>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--blue-line)"></span>第一个数 i</span>
+      <span><span class="dot" style="background:var(--amber-line)"></span>第二个数 j</span>
+      <span><span class="dot" style="background:var(--green-line)"></span>命中</span>
+    </div>
+    <div class="row">
+      <button class="primary" id="bruteNext">试下一对</button>
+      <button id="bruteReset">重来</button>
+      <span class="tag" id="bruteCount">0 / 6 次尝试</span>
+    </div>
+    <div class="status" id="bruteStatus">点「试下一对」开始。</div>
+    <pre>for i in range(len(nums)):
+    for j in range(i + 1, len(nums)):      # 关键：从 i+1 开始
+        if nums[i] + nums[j] == target:
+            return [i, j]</pre>
+    <p class="hint" style="margin:0">
+      为什么 <b>j 要从 i+1 开始</b>？两个原因：① 从 0 开始会出现 i==j，拿同一个格子自己配自己；
+      ② 从 i+1 开始还能避免重复，因为 (0,1) 和 (1,0) 是同一对。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="step-no">2</span>方法二：边登记边查找（LeetCode 正解）</h2>
+    <p class="hint">换一个思路 —— 不问「谁跟我配对」，而问「<b>我还差谁</b>」。差的那个人就是 target − 当前数。</p>
+    <div class="arr" id="dictArr"></div>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--blue-line)"></span>正在看的数</span>
+      <span><span class="dot" style="background:var(--green-line)"></span>命中</span>
+    </div>
+    <div class="kv" id="dictKv"><b>登记本</b>（数字 → 它在几号格子）：<span>（空）</span></div>
+    <div class="row">
+      <button class="primary" id="dictNext">下一轮</button>
+      <button id="dictReset">重来</button>
+      <span class="tag" id="dictCount">第 0 / 3 轮</span>
+    </div>
+    <div class="status" id="dictStatus">点「下一轮」开始。注意观察登记本是怎么一点点变多的。</div>
+    <pre>seen = {}
+for i, n in enumerate(nums):
+    need = target - n
+    if need in seen:            # 先查
+        return [seen[need], i]
+    seen[n] = i                 # 再存
+return []</pre>
+    <p class="hint" style="margin:0">
+      这就是 O(n)：每个格子只看一次，字典的查找和插入几乎不花时间。
+      对比方法一「每个格子都要回头问一遍前面的格子」，差别就在这里。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="step-no">3</span>最容易写错的地方：先查还是先存</h2>
+    <p class="hint">用最刁钻的用例来验：nums = [3, 3]，target = 6。两个格子的数一样，但它们是两个不同的格子。</p>
+    <div class="row">
+      <button class="primary" id="modeGood">先查再存</button>
+      <button id="modeBad">先存再查</button>
+    </div>
+    <div class="arr" id="bugArr"></div>
+    <div class="kv" id="bugKv"><b>登记本</b>：<span>（空）</span></div>
+    <div class="row">
+      <button class="primary" id="bugNext">下一轮</button>
+      <button id="bugReset">重来</button>
+      <span class="tag" id="bugCount">第 0 轮</span>
+    </div>
+    <div class="status" id="bugStatus">选一种写法，然后点「下一轮」。</div>
+    <div class="cols" style="margin-top:16px">
+      <div class="mini good">
+        <h3>先查再存 —— 正确</h3>
+        <p>查的是「我之前有没有见过你」。刚登记的自己属于「现在」，不算「之前」。</p>
+        <p>第 1 轮：查 3 → 空 → 登记。<br>第 2 轮：查 3 → 有 → 返回 [0, 1]</p>
+      </div>
+      <div class="mini bad">
+        <h3>先存再查 —— 踩坑</h3>
+        <p>一登记就立刻查到刚写进去的自己，等于让同一个格子和自己配对。</p>
+        <p>第 1 轮：登记 → 查 3 → 命中自己 → 返回 <b>[0, 0]</b></p>
+      </div>
+    </div>
+    <pre class="bad-code">seen[n] = i                 # 错：登记在前
+if need in seen: ...
+# nums=[3,3] → 返回 [0,0]，同一个格子用了两遍</pre>
+    <p class="hint" style="margin:0">
+      示例 3 存在的意义，就是专门用来抓这个错误的。这也是为什么做题时要拿边界用例自测 —— 
+      普通用例（比如 [2,7,11,15]）两个写法都能过，只有 [3,3] 能把错误暴露出来。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>两种方法放一起比</h2>
+    <table>
+      <tr><th>对比项</th><th>方法一：两层循环</th><th>方法二：字典</th></tr>
+      <tr><td>代码行数</td><td>6 行</td><td>6 行</td></tr>
+      <tr><td>看懂要多久</td><td>快</td><td>慢一点（要先理解字典）</td></tr>
+      <tr><td>时间复杂度</td><td>O(n²)</td><td><b>O(n)</b></td></tr>
+      <tr><td>空间复杂度</td><td>O(1)</td><td>O(n)（多存一个字典）</td></tr>
+      <tr><td>n = 100,000 实测</td><td>约 238 秒（超时）</td><td>0.019 秒</td></tr>
+      <tr><td>LeetCode 能过吗</td><td>数据量大时超时</td><td>能过</td></tr>
+    </table>
+    <p><b>O(n²) 和 O(n) 差多少？</b>格子数翻倍时，O(n²) 的耗时变成 4 倍，O(n) 只翻一倍。
+       数据量一大，差距是成倍拉开的，不是「快一点点」。</p>
+    <p class="hint" style="margin:0">
+      这叫做「用空间换时间」：多花一点内存（存了这个字典），换来快到飞起的查找。
+      这是算法里最常见的取舍之一。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>该用哪个？学法建议</h2>
+    <ul>
+      <li><b>提交到 LeetCode / 面试</b> → 用方法二。方法一会超时，而且面试官想看的正是「你会不会想到用哈希表」。</li>
+      <li><b>只是理解题目</b> → 先用方法一，它不需要任何额外知识就能看懂。</li>
+    </ul>
+    <p class="note" style="margin-bottom:0">
+      推荐的学法：先自己写出方法一，再问自己「怎么才能不重复地问前面那些数」——
+      顺着这个问题，你自然会想到方法二。这个「从笨办法走到聪明办法」的过程，
+      比直接背下方法二有价值得多。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>三个新手最容易踩的坑</h2>
+    <pre class="bad-code">if nums[i] + nums[j] = target:          # 坑 1：等号写成一个，语法直接报错
+if nums[i] + nums[j] == target:         # 对：比较要用两个等号</pre>
+    <pre class="bad-code">for j in range(len(nums)):              # 坑 2：内层从 0 开始，会拿自己配自己
+for j in range(i + 1, len(nums)):       # 对：只跟后面的配对</pre>
+    <pre class="bad-code">seen[n] = i                             # 坑 3：先登记再查（见上面第 3 节）
+if need in seen: ...                    # 对：先查，再登记</pre>
+    <p class="hint" style="margin:0">
+      一个等号 <code>=</code> 是「赋值」，把右边存进左边；两个等号 <code>==</code> 是「比较」，
+      问左右相等吗，结果是 True 或 False。新手最常在这里栽。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>这道题算不算学会？自己勾一下</h2>
+    <ul class="chk">
+      <li>不看代码，能说清「为什么内层循环要从 i+1 开始」</li>
+      <li>不看代码，能说清「为什么字典要先查再登记」</li>
+      <li>能说清「为什么 [3, 3] 是个重要的测试用例」</li>
+      <li>能说出方法一和方法二分别在什么场景下该用</li>
+    </ul>
+    <p class="note" style="margin-bottom:0">
+      四条都能说出来，这道题才算真的过了。<b>拿到绿色「通过」不等于学会</b> —— 
+      能讲给别人听，才是学会。
+    </p>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var N = function(s){ for (var i=1;i<arguments.length;i++) if (arguments[i]!=null) return arguments[i]; return s; };
+
+  function renderArr(el, nums, marks){
+    marks = marks || {};
+    el.innerHTML = '';
+    nums.forEach(function(v, idx){
+      var wrap = document.createElement('div');
+      wrap.className = 'cw';
+      var cls = 'chip';
+      if (marks.hit && marks.hit.indexOf(idx) !== -1) cls += ' hit';
+      else if (marks.j === idx) cls += ' j';
+      else if (marks.i === idx) cls += ' i';
+      var d1 = document.createElement('div');
+      d1.className = 'idx'; d1.textContent = String(idx);
+      var d2 = document.createElement('div');
+      d2.className = cls; d2.textContent = String(v);
+      wrap.appendChild(d1); wrap.appendChild(d2);
+      el.appendChild(wrap);
+    });
+  }
+
+  function setStatus(el, text, kind){
+    el.className = 'status' + (kind ? ' ' + kind : '');
+    el.textContent = text;
+  }
+
+  /* ---------- 题目示例 ---------- */
+  renderArr(document.getElementById('introArr'), [2,7,11,15], {hit:[0,1]});
+
+  /* ---------- 方法一：暴力法 ---------- */
+  var BR = { nums:[2,7,11,15], target:26 };
+  BR.pairs = (function(){
+    var p = [];
+    for (var i=0;i<BR.nums.length;i++)
+      for (var j=i+1;j<BR.nums.length;j++) p.push([i,j]);
+    return p;
+  })();
+  var brStep = 0;
+  var brArr = document.getElementById('bruteArr');
+  var brStatus = document.getElementById('bruteStatus');
+  var brCount = document.getElementById('bruteCount');
+
+  function brRender(){
+    if (brStep === 0) { renderArr(brArr, BR.nums, {}); return; }
+    var p = BR.pairs[brStep-1];
+    var hit = BR.nums[p[0]] + BR.nums[p[1]] === BR.target;
+    renderArr(brArr, BR.nums, hit ? {hit:p} : {i:p[0], j:p[1]});
+  }
+  function brReset(){
+    brStep = 0;
+    brRender();
+    brCount.textContent = '0 / ' + BR.pairs.length + ' 次尝试';
+    setStatus(brStatus, '点「试下一对」开始。');
+    document.getElementById('bruteNext').disabled = false;
+  }
+  document.getElementById('bruteNext').addEventListener('click', function(){
+    if (brStep >= BR.pairs.length) return;
+    brStep++;
+    var p = BR.pairs[brStep-1];
+    var a = BR.nums[p[0]], b = BR.nums[p[1]];
+    var s = a + b, hit = s === BR.target;
+    brRender();
+    brCount.textContent = brStep + ' / ' + BR.pairs.length + ' 次尝试';
+    if (hit){
+      setStatus(brStatus,
+        '第 ' + brStep + ' 次：nums[' + p[0] + '] + nums[' + p[1] + '] = ' + a + ' + ' + b + ' = ' + s +
+        '　命中！\n返回 [' + p[0] + ', ' + p[1] + ']', 'ok');
+      this.disabled = true;
+    } else {
+      var log = '';
+      for (var k=0;k<brStep;k++){
+        var q = BR.pairs[k];
+        log += '  (' + q[0] + ',' + q[1] + ') = ' + (BR.nums[q[0]]+BR.nums[q[1]]) + '✗\n';
+      }
+      setStatus(brStatus,
+        '第 ' + brStep + ' 次：nums[' + p[0] + '] + nums[' + p[1] + '] = ' + a + ' + ' + b + ' = ' + s +
+        '，不等于 ' + BR.target + '，继续。\n\n已试过的组合：\n' + log);
+    }
+  });
+  document.getElementById('bruteReset').addEventListener('click', brReset);
+  brReset();
+
+  /* ---------- 方法二：字典法 ---------- */
+  var DC = { nums:[3,2,4], target:6 };
+  DC.rounds = (function(){
+    var out = [], seen = {};
+    for (var i=0;i<DC.nums.length;i++){
+      var n = DC.nums[i], need = DC.target - n;
+      var has = Object.prototype.hasOwnProperty.call(seen, need);
+      var before = {};
+      for (var k in seen) before[k] = seen[k];
+      if (has){
+        out.push({i:i, n:n, need:need, found:true, before:before,
+                  result:[seen[need], i]});
+        break;
+      }
+      seen[n] = i;
+      var after = {};
+      for (var k2 in seen) after[k2] = seen[k2];
+      out.push({i:i, n:n, need:need, found:false, before:before, after:after});
+    }
+    return out;
+  })();
+
+  var dcStep = 0;
+  var dcArr = document.getElementById('dictArr');
+  var dcStatus = document.getElementById('dictStatus');
+  var dcKv = document.getElementById('dictKv');
+  var dcCount = document.getElementById('dictCount');
+
+  function fmtSeen(obj){
+    var ks = Object.keys(obj);
+    if (!ks.length) return '（空）';
+    return ks.map(function(k){ return k + ' → ' + obj[k]; }).join('　|　');
+  }
+  function dcRender(){
+    var marks = {};
+    if (dcStep > 0){
+      var r = DC.rounds[dcStep-1];
+      marks = r.found ? {hit:[r.before[r.need], r.i]} : {i:r.i};
+    }
+    renderArr(dcArr, DC.nums, marks);
+    var state = dcStep > 0 ? DC.rounds[dcStep-1] : null;
+    var seenNow = state ? (state.found ? state.before : state.after) : {};
+    dcKv.innerHTML = '<b>登记本</b>（数字 → 它在几号格子）：<span>' + fmtSeen(seenNow) + '</span>';
+  }
+  function dcReset(){
+    dcStep = 0;
+    dcRender();
+    dcCount.textContent = '第 0 / ' + DC.rounds.length + ' 轮';
+    setStatus(dcStatus, '点「下一轮」开始。注意观察登记本是怎么一点点变多的。');
+    document.getElementById('dictNext').disabled = false;
+  }
+  document.getElementById('dictNext').addEventListener('click', function(){
+    if (dcStep >= DC.rounds.length) return;
+    dcStep++;
+    var r = DC.rounds[dcStep-1];
+    dcRender();
+    dcCount.textContent = '第 ' + dcStep + ' / ' + DC.rounds.length + ' 轮';
+    if (r.found){
+      setStatus(dcStatus,
+        '第 ' + dcStep + ' 轮：拿到 ' + r.n + '，我需要 ' + DC.target + ' − ' + r.n + ' = ' + r.need + '。\n' +
+        '查登记本 → ' + r.need + ' 在里面，编号是 ' + r.before[r.need] + '！\n' +
+        '当前这个 ' + r.n + ' 在 ' + r.i + ' 号格子 → 返回 [' + r.result[0] + ', ' + r.result[1] + ']', 'ok');
+      this.disabled = true;
+    } else {
+      setStatus(dcStatus,
+        '第 ' + dcStep + ' 轮：拿到 ' + r.n + '，我需要 ' + DC.target + ' − ' + r.n + ' = ' + r.need + '。\n' +
+        '查登记本 → 没有 ' + r.need + '。\n' +
+        '那就把「' + r.n + ' 在 ' + r.i + ' 号格子」记进去。');
+    }
+  });
+  document.getElementById('dictReset').addEventListener('click', dcReset);
+  dcReset();
+
+  /* ---------- 先查 vs 先存 ---------- */
+  var BG = { nums:[3,3], target:6 };
+  function buildRounds(mode){
+    var out = [], seen = {};
+    for (var i=0;i<BG.nums.length;i++){
+      var n = BG.nums[i], need = BG.target - n;
+      var before = {};
+      for (var k in seen) before[k] = seen[k];
+      if (mode === 'good'){
+        if (Object.prototype.hasOwnProperty.call(before, need)){
+          out.push({i:i, n:n, need:need, found:true, before:before, result:[before[need], i], mode:mode});
+          break;
+        }
+        seen[n] = i;
+        var after = {};
+        for (var k2 in seen) after[k2] = seen[k2];
+        out.push({i:i, n:n, need:need, found:false, before:before, after:after, mode:mode});
+      } else {
+        seen[n] = i;
+        var after2 = {};
+        for (var k3 in seen) after2[k3] = seen[k3];
+        var has = Object.prototype.hasOwnProperty.call(after2, need);
+        out.push({i:i, n:n, need:need, found:has, before:before, after:after2,
+                  result: has ? [after2[need], i] : null, mode:mode});
+        if (has) break;
+      }
+    }
+    return out;
+  }
+  var bgMode = 'good';
+  var bgRounds = buildRounds('good');
+  var bgStep = 0;
+  var bgArr = document.getElementById('bugArr');
+  var bgStatus = document.getElementById('bugStatus');
+  var bgKv = document.getElementById('bugKv');
+  var bgCount = document.getElementById('bugCount');
+
+  function bgRender(){
+    var marks = {};
+    if (bgStep > 0){
+      var r = bgRounds[bgStep-1];
+      if (r.found) marks = {hit:[r.result[0], r.i]};
+      else marks = {i:r.i};
+    }
+    renderArr(bgArr, BG.nums, marks);
+    var st = bgStep > 0 ? bgRounds[bgStep-1] : null;
+    var seenNow = st ? (st.mode === 'good' ? (st.found ? st.before : st.after) : st.after) : {};
+    bgKv.innerHTML = '<b>登记本</b>：<span>' + fmtSeen(seenNow) + '</span>';
+  }
+  function bgReset(keepStatus){
+    bgStep = 0;
+    bgRounds = buildRounds(bgMode);
+    bgRender();
+    bgCount.textContent = '第 0 轮';
+    document.getElementById('bugNext').disabled = false;
+    if (!keepStatus) setStatus(bgStatus, '选一种写法，然后点「下一轮」。');
+  }
+  document.getElementById('modeGood').addEventListener('click', function(){
+    bgMode = 'good'; bgReset(false);
+  });
+  document.getElementById('modeBad').addEventListener('click', function(){
+    bgMode = 'bad'; bgReset(false);
+  });
+  document.getElementById('bugNext').addEventListener('click', function(){
+    if (bgStep >= bgRounds.length) return;
+    bgStep++;
+    var r = bgRounds[bgStep-1];
+    bgRender();
+    bgCount.textContent = '第 ' + bgStep + ' 轮';
+    if (r.found){
+      var bad = r.result[0] === r.result[1];
+      var txt;
+      if (r.mode === 'good'){
+        txt = '第 ' + bgStep + ' 轮：拿到 ' + r.n + '，我需要 ' + r.need + '。\n' +
+              '查登记本 → 有！在 ' + r.before[r.need] + ' 号格子。\n' +
+              '当前在 ' + r.i + ' 号格子 → 返回 [' + r.result[0] + ', ' + r.result[1] + ']';
+      } else {
+        txt = '第 ' + bgStep + ' 轮：先把「' + r.n + ' 在 ' + r.i + ' 号格子」记进去。\n' +
+              '再查 ' + r.need + ' → 命中了，但命中的是刚刚登记的自己。\n' +
+              '返回 [' + r.result[0] + ', ' + r.result[1] + ']　←　同一个格子被用了两遍';
+      }
+      setStatus(bgStatus, txt, bad ? 'bad' : 'ok');
+      this.disabled = true;
+    } else {
+      setStatus(bgStatus,
+        '第 ' + bgStep + ' 轮：拿到 ' + r.n + '，我需要 ' + r.need + '。\n' +
+        '查登记本 → 没有。把「' + r.n + ' 在 ' + r.i + ' 号格子」记进去。');
+    }
+  });
+  bgReset(false);
+
+})();
+</script>
+</body>
+</html>
