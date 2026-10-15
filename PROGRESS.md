@@ -10,7 +10,7 @@
 | ① 开发环境搭建 | ✅ 完成 | `.venv/` + 全套配置，9 项实测通过 |
 | ② Git 基础补课 | ✅ 完成 | **10 次规范提交**，全部已推送到 GitHub |
 | ④ Prompt 基础三原则 | 🟡 已开始实战（见 PROMPT-LAB） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md) |
-| ③ AI 工具初体验 | 🟡 LeetCode 4 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
+| ③ AI 工具初体验 | 🟡 LeetCode 6 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
 
 ---
 
@@ -50,7 +50,7 @@
 
 ## 🟡 任务三：AI 工具初体验
 
-**LeetCode 部分已完成**（4 题 / 35 个用例全部通过），Pandas 部分未开始。
+**LeetCode 部分已完成**（6 题：4 道简单题 35 个用例 + 平方和两题，全部通过），Pandas 部分未开始。
 
 - [x] `leetcode/` 四个题解文件（各含题目、思路、复杂度、边界用例与自测）
   - [x] Two Sum（哈希表）—— 最易错：`[3,3], target=6` 必须返回 `[0,1]`
@@ -60,11 +60,15 @@
 - [x] `leetcode/run_all.py` 一键自测入口
 - [x] `leetcode/LEETCODE-HOWTO.md` —— 怎么把题解提交到 LeetCode 网站
       （含格式差异表、七步操作、八种常见报错对照）
-- [x] `leetcode/submit/` —— **四道题的可直接粘贴版**（一个文件一道题，整文件复制即可）
-- [x] `leetcode/verify_submit.py` —— 模拟 LeetCode 判题环境校验粘贴版，**35 项全通过**
-- [x] 两份面向零基础的逐行讲解 + 可交互图解
+- [x] `leetcode/submit/` —— **六道题的可直接粘贴版**（一个文件一道题，整文件复制即可）
+  - [x] 子数组不同元素数目的平方和 I（2913，n ≤ 100，暴力 O(n²)）
+  - [x] 子数组不同元素数目的平方和 II（2916，n ≤ 10⁵，树状数组 O(n log n) + 取模）
+        —— **两题题目描述一字不差**，只有数据范围和取模不同；拿 I 去交 II 会 TLE（实测约 166s vs 0.58s）
+- [x] `leetcode/verify_submit.py` —— 模拟 LeetCode 判题环境校验粘贴版，**49 项全通过**
+- [x] 面向零基础的逐行讲解 + 可交互图解
   - [x] [two_sum_walkthrough.md](leetcode/two_sum_walkthrough.md) + [two_sum_visual.html](leetcode/two_sum_visual.html)
   - [x] [search_insert_walkthrough.md](leetcode/search_insert_walkthrough.md) + [search_insert_visual.html](leetcode/search_insert_visual.html)
+  - [x] [subarrays_squares_walkthrough.md](leetcode/subarrays_squares_walkthrough.md)（平方和 II，含贡献转化推导）
 - [ ] **在 LeetCode 网站上实际提交通过一题**（拿到绿色「通过」）—— 代码已备好，就差你点提交
 - [ ] **验收（关键）**：不看代码，能用自己的话复述每道题的思路 + 说出最易错的边界用例
 - [ ] `pandas/` 建两个 notebook
@@ -82,8 +86,11 @@ source .venv/Scripts/activate
 # 运行自检脚本
 python hello.py
 
-# 一键跑四道 LeetCode 题解的自测
+# 一键跑四道简单题题解的自测
 python leetcode/run_all.py
+
+# 校验 submit/ 下的粘贴版（模拟 LeetCode 判题环境）
+python leetcode/verify_submit.py
 ```
 
 > ⚠️ 别直接用全局 `python`：PATH 首位是工具自带的运行时，会命中错误的解释器。
@@ -92,12 +99,10 @@ python leetcode/run_all.py
 
 - 远程：`https://github.com/zzx130722/zzx1.git`（分支 `main`）
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
-- 本地共 **31 个提交**（含本条进度记录的更新），远程 **21 个**（`3aa5082`）
-- ⚠️ **本地领先远程 10 个提交**，需要你自己推一次：
-  - 上次遗留的 2 个（Two Sum 的 prompt 记录等）
-  - 10-14 新增的 4 个（二分题解 / 讲解与图解 / 并入自测 / 进度更新）
-  - 10-15 新增的 3 个（submit/ 粘贴版 / 校验脚本 / 文档指向）+ 本条更新
-- 仓库追踪文件 22 项（`.venv` 仍未追踪）
+- 本地共 **35 个提交**，远程 **21 个**（`3aa5082`）
+- ⚠️ **本地领先远程 14 个提交**，需要你自己推一次
+  （累积了 10-14 与 10-15 两天的改动，具体见 `git log --oneline`）
+- 仓库追踪文件 31 项（`.venv` 仍未追踪）
 - 备份标签仍在：`backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
 
 ## 推送备忘（重要）
