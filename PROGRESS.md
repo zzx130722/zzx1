@@ -1,6 +1,6 @@
 # 学习进度
 
-> 最后更新：2026-10-14 16:40
+> 最后更新：2026-10-15 14:40
 > 实际执行顺序已调整为 **① → ② → ④ → ③**（④ 是方法层，不依赖环境，却是 ③ 的效率前置）
 
 ## 总览
@@ -59,11 +59,13 @@
   - [x] Search Insert Position（二分查找）—— 最易错：`target=7` 要返回 `len(nums)`
 - [x] `leetcode/run_all.py` 一键自测入口
 - [x] `leetcode/LEETCODE-HOWTO.md` —— 怎么把题解提交到 LeetCode 网站
-      （含可逐字粘贴的代码、七步操作、八种常见报错对照；粘贴版已按判题调用方式实测 20/20）
+      （含格式差异表、七步操作、八种常见报错对照）
+- [x] `leetcode/submit/` —— **四道题的可直接粘贴版**（一个文件一道题，整文件复制即可）
+- [x] `leetcode/verify_submit.py` —— 模拟 LeetCode 判题环境校验粘贴版，**35 项全通过**
 - [x] 两份面向零基础的逐行讲解 + 可交互图解
   - [x] [two_sum_walkthrough.md](leetcode/two_sum_walkthrough.md) + [two_sum_visual.html](leetcode/two_sum_visual.html)
   - [x] [search_insert_walkthrough.md](leetcode/search_insert_walkthrough.md) + [search_insert_visual.html](leetcode/search_insert_visual.html)
-- [ ] **在 LeetCode 网站上实际提交通过一题**（拿到绿色「通过」）
+- [ ] **在 LeetCode 网站上实际提交通过一题**（拿到绿色「通过」）—— 代码已备好，就差你点提交
 - [ ] **验收（关键）**：不看代码，能用自己的话复述每道题的思路 + 说出最易错的边界用例
 - [ ] `pandas/` 建两个 notebook
   - [ ] 读 CSV + `groupby` 聚合
@@ -90,10 +92,11 @@ python leetcode/run_all.py
 
 - 远程：`https://github.com/zzx130722/zzx1.git`（分支 `main`）
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
-- 本地共 **27 个提交**（含本条进度记录的更新），远程 **21 个**（`3aa5082`）
-- ⚠️ **本地领先远程 6 个提交**，需要你自己推一次：
+- 本地共 **31 个提交**（含本条进度记录的更新），远程 **21 个**（`3aa5082`）
+- ⚠️ **本地领先远程 10 个提交**，需要你自己推一次：
   - 上次遗留的 2 个（Two Sum 的 prompt 记录等）
-  - 本次新增的 4 个（二分题解 / 讲解与图解 / 并入自测 / 本条进度更新）
+  - 10-14 新增的 4 个（二分题解 / 讲解与图解 / 并入自测 / 进度更新）
+  - 10-15 新增的 3 个（submit/ 粘贴版 / 校验脚本 / 文档指向）+ 本条更新
 - 仓库追踪文件 22 项（`.venv` 仍未追踪）
 - 备份标签仍在：`backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
 
