@@ -11,6 +11,54 @@
 | [035_search_insert_position.py](035_search_insert_position.py) | 35. 搜索插入位置 | `searchInsert` | <https://leetcode.cn/problems/search-insert-position/> |
 | [2913_subarrays_distinct_sum_of_squares_i.py](2913_subarrays_distinct_sum_of_squares_i.py) | 2913. 子数组不同元素数目的平方和 I（简单版，n ≤ 100） | `sumCounts` | <https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-i/> |
 | [2916_subarrays_distinct_sum_of_squares_ii.py](2916_subarrays_distinct_sum_of_squares_ii.py) | 2916. 子数组不同元素数目的平方和 II（困难版，n ≤ 10⁵，要取模） | `sumCounts` | <https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-ii/> |
+| [175_combine_two_tables.sql](175_combine_two_tables.sql) | 175. 组合两个表（**SQL 题，格式完全不同，见下**） | 无方法名，直接交查询语句 | <https://leetcode.cn/problems/combine-two-tables/> |
+
+> ⚠️ **SQL 题（数据库题）和算法题不是一回事**：没有 `class Solution`、没有方法名，
+> 代码框里直接写查询语句，所以上表最后一行「方法名」那栏对它不适用。
+> 详见下方「SQL 题（175）」。
+
+## SQL 题（175. 组合两个表）
+
+**代码框里放的是一条完整的查询语句**，不是函数：
+
+```sql
+SELECT p.firstName, p.lastName, a.city, a.state
+FROM Person AS p
+LEFT JOIN Address AS a
+    ON p.personId = a.personId;
+```
+
+- 别写 `class Solution`，别写 `def`——**交的是 SQL，不是 Python**。
+- 代码框里预置了一行 `# Write your MySQL query statement below` 的注释，
+  **留着无妨**（它是注释），但可以直接替换成上面的语句。
+- 语言选 **MySQL**（页面右侧的下拉框）。
+
+### 为什么必须是 LEFT JOIN
+
+题目要求「如果 personId 的地址不在 Address 表中，则报告为 null」——
+也就是**即使没有地址，这个人也必须出现在结果里**。
+
+| 写法 | 结果 | 对不对 |
+|---|---|---|
+| `LEFT JOIN` | Allen Wang 保留，city/state 为 `null` | ✅ |
+| `JOIN`（= INNER JOIN） | Allen Wang **整行消失** | ❌ |
+| `FROM Person, Address WHERE ...` | 同上，等价于 INNER JOIN | ❌ |
+
+注意 **`ON` 后面的连接条件必须是 `p.personId = a.personId`**。
+写成 `p.personId = a.addressId` 语法完全合法、也能跑出 2 行，
+但**每一行的城市都是错的人**——这种错误最难发现。
+
+### 这个文件是怎么验过的
+
+SQL 题本地不好试，所以另配了一个脚本，用 Python 自带的 SQLite
+建好同样的表、灌入题目示例数据，把 `.sql` 文件当查询执行，再比对行与列名：
+
+```bash
+./.venv/Scripts/python.exe leetcode/verify_sql.py
+```
+
+实测 **5 项全通过**（本题 2 项 + 3 种错误写法均被正确检出）。
+
 
 > ⚠️ **最后两题先认清自己在做哪一道。** 两道题的**题目描述和示例一模一样**，
 > 区别只在数据范围和是否取模：I 是 `n ≤ 100`、不用取模（简单题）；
