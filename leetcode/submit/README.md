@@ -9,6 +9,15 @@
 | [020_valid_parentheses.py](020_valid_parentheses.py) | 20. 有效的括号 | `isValid` | <https://leetcode.cn/problems/valid-parentheses/> |
 | [021_merge_two_sorted_lists.py](021_merge_two_sorted_lists.py) | 21. 合并两个有序链表 | `mergeTwoLists` | <https://leetcode.cn/problems/merge-two-sorted-lists/> |
 | [035_search_insert_position.py](035_search_insert_position.py) | 35. 搜索插入位置 | `searchInsert` | <https://leetcode.cn/problems/search-insert-position/> |
+| [2913_subarrays_distinct_sum_of_squares_i.py](2913_subarrays_distinct_sum_of_squares_i.py) | 2913. 子数组不同元素数目的平方和 I（简单版，n ≤ 100） | `sumCounts` | <https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-i/> |
+| [2916_subarrays_distinct_sum_of_squares_ii.py](2916_subarrays_distinct_sum_of_squares_ii.py) | 2916. 子数组不同元素数目的平方和 II（困难版，n ≤ 10⁵，要取模） | `sumCounts` | <https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-ii/> |
+
+> ⚠️ **最后两题先认清自己在做哪一道。** 两道题的**题目描述和示例一模一样**，
+> 区别只在数据范围和是否取模：I 是 `n ≤ 100`、不用取模（简单题）；
+> II 是 `n ≤ 10⁵`、要对 `10⁹+7` 取模（困难题）。
+> 拿 I 的暴力写法去交 II 会**超时**（实测 n=10⁵ 需约 166 秒）。
+> 分不清就先交 I 的版本 —— 它的 `% MOD` 是无害的，小数据下答案不会超过模数。
+> 两个文件的解法详见下方「平方和这两题」。
 
 ## 和 `leetcode/` 下同名题解的区别
 
@@ -75,9 +84,42 @@ Solution().searchInsert([1, 3, 5, 6], 5)
 ./.venv/Scripts/python.exe leetcode/verify_submit.py
 ```
 
-实测结果：**35 项全部通过**（含四道题的方法签名核对）。
+实测结果：**49 项全部通过**（六道题共 43 个用例 + 6 项方法签名核对）。
 所以你粘上去之后如果报错，可以先跑一遍这个脚本 —— 脚本全过，
 说明代码本身没问题，那就是粘贴或提交时的问题。
+
+## 平方和这两题（2913 / 2916）
+
+**I 的写法（O(n²)，适合 n ≤ 100）** —— 枚举起点 `i`，向右一格格扩展，
+用集合记录见过哪些值，集合大小就是当前子数组的不同计数：
+
+```python
+for i in range(n):
+    seen = set()
+    for j in range(i, n):
+        seen.add(nums[j])
+        ans += len(seen) ** 2
+```
+
+**II 的写法（O(n log n)，n = 10⁵ 也过）** —— 核心是一次「贡献转化」：
+
+固定右端点 `r`，设 `A[l]` = 子数组 `nums[l..r]` 的不同计数。
+那么**「所有以 r 结尾的子数组的答案」恰好就是 `Σ A[l]²`**，
+整个题就是把它对每个 `r` 累加起来。
+
+当 `r` 从 `r-1` 推进到 `r`（新值 `v`，上一次出现在 `p`）时：
+
+- `l` 在 `[p+1, r]`：这些子数组里 `v` 是**新面孔**，`A[l] += 1`
+- `l` 在 `[0, p]`：`v` 早就出现过，`A[l]` **不变**
+
+于是只需要支持「区间加 1」和「区间求和」——正好是**树状数组**的看家本领
+（两个树状数组配合差分，就能做到区间加 + 区间求和）。
+
+平方和怎么增量维护？每个 `A[l]` 加 1 时，`A[l]²` 增加 `2·A[l] + 1`，
+所以区间整体加 1 后，平方和总共增加 `2·ΣA[l] + 区间长度`。
+那个 `ΣA[l]` 就是上面的区间求和，一次查询搞定。
+
+**想弄懂 II 为什么能这么推，可以看**：[subarrays_squares_walkthrough.md](../subarrays_squares_walkthrough.md)。
 
 ## 关于「必须 O(log n)」
 

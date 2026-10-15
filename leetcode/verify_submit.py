@@ -156,7 +156,22 @@ def main() -> int:
     ]:
         runner.check(f"nums={nums} target={target}", search_insert(nums, target), expected)
 
-    print("\n[5] 方法签名核对（LeetCode 靠名字来找你的函数）")
+    print("\n[5] 子数组不同元素数目的平方和 I / II  Solution.sumCounts")
+    # 两版解法（2913 暴力 O(n^2) / 2916 树状数组 O(n log n)）答案必须完全一致
+    square_i = load("2913_subarrays_distinct_sum_of_squares_i.py")().sumCounts
+    square_ii = load("2916_subarrays_distinct_sum_of_squares_ii.py")().sumCounts
+    for nums, expected in [
+        ([1, 2, 1], 15),   # 题目示例 1
+        ([2, 2], 3),       # 题目示例 2
+        ([1], 1),
+        ([5, 5, 5, 5], 10),
+        ([1, 2, 3, 4], 50),      # 全不同：4*1 + 3*4 + 2*9 + 1*16
+        ([1, 1, 2], 12),         # 1,1,1,1,4,4
+    ]:
+        runner.check(f"I  nums={nums}", square_i(nums), expected)
+        runner.check(f"II nums={nums}", square_ii(nums), expected)
+
+    print("\n[6] 方法签名核对（LeetCode 靠名字来找你的函数）")
     runner.signature("001_two_sum.py", "twoSum", ["self", "nums", "target"], "List[int]")
     runner.signature("020_valid_parentheses.py", "isValid", ["self", "s"], "bool")
     runner.signature(
@@ -166,6 +181,14 @@ def main() -> int:
     runner.signature(
         "035_search_insert_position.py", "searchInsert",
         ["self", "nums", "target"], "int",
+    )
+    runner.signature(
+        "2913_subarrays_distinct_sum_of_squares_i.py", "sumCounts",
+        ["self", "nums"], "int",
+    )
+    runner.signature(
+        "2916_subarrays_distinct_sum_of_squares_ii.py", "sumCounts",
+        ["self", "nums"], "int",
     )
 
     print("\n" + "-" * 64)
