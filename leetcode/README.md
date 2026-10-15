@@ -13,12 +13,18 @@
 ./.venv/Scripts/python.exe leetcode/two_sum.py
 ```
 
-每个题解文件都能独立运行、独立提交到 LeetCode —— 不依赖目录里的其他文件。
+本目录的题解是**练习版**：每个文件都能独立运行、自带自测用例，不依赖其他文件。
+（要提交到 LeetCode 的版本在 `submit/`，两者入口格式不同，见下。）
 
 ### 想在 LeetCode 网站上跑？
 
-本地文件**不能直接粘进 LeetCode**（入口函数名、类型提示都不一样）。
-可直接粘贴的版本、页面操作步骤、常见报错对照，都写在 **[LEETCODE-HOWTO.md](LEETCODE-HOWTO.md)** 里。
+**最快的方式**：打开 [`submit/`](submit/) 目录，里面**一个文件对应一道题**，
+整文件复制 → 粘到 LeetCode → 提交，不用改任何东西。
+（这些文件是按 LeetCode 的判题方式实测过的：`./.venv/Scripts/python.exe leetcode/verify_submit.py`
+→ 35 项全通过，含四道题的方法签名核对。）
+
+**想弄懂为什么不能直接粘 `leetcode/` 里的文件**，看 **[LEETCODE-HOWTO.md](LEETCODE-HOWTO.md)** ——
+格式差异表、页面七步操作、常见报错对照，都写在里面。
 
 ### 想先弄懂题目本身？
 
@@ -38,6 +44,24 @@
 | [valid_parentheses.py](valid_parentheses.py) | 20. 有效的括号 | 栈、后进先出 | O(n) | O(n) |
 | [merge_two_sorted_lists.py](merge_two_sorted_lists.py) | 21. 合并两个有序链表 | 双指针、哑节点 | O(m+n) | O(1) |
 | [search_insert.py](search_insert.py) | 35. 搜索插入位置 | 二分查找、左闭右开 | O(log n) | O(1) |
+
+## 想交到 LeetCode 上？用 `submit/`
+
+上面这四个文件是**练习版**，格式和 LeetCode 要求的不一样（入口是顶层函数、带 `main()`）。
+[`submit/`](submit/) 里放着**提交版**，一个文件对应一道题，整文件复制就能用：
+
+| 练习版（自己跑） | 提交版（交作业） | 方法名 |
+|---|---|---|
+| [two_sum.py](two_sum.py) | [submit/001_two_sum.py](submit/001_two_sum.py) | `twoSum` |
+| [valid_parentheses.py](valid_parentheses.py) | [submit/020_valid_parentheses.py](submit/020_valid_parentheses.py) | `isValid` |
+| [merge_two_sorted_lists.py](merge_two_sorted_lists.py) | [submit/021_merge_two_sorted_lists.py](submit/021_merge_two_sorted_lists.py) | `mergeTwoLists` |
+| [search_insert.py](search_insert.py) | [submit/035_search_insert_position.py](submit/035_search_insert_position.py) | `searchInsert` |
+
+提交版由 [verify_submit.py](verify_submit.py) 按 LeetCode 的判题方式校验（35 项全通过）：
+
+```bash
+./.venv/Scripts/python.exe leetcode/verify_submit.py
+```
 
 > 📖 两数之和另有一份**面向零基础**的逐行讲解：
 > [two_sum_walkthrough.md](two_sum_walkthrough.md) ——
