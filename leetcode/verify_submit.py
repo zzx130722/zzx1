@@ -171,8 +171,29 @@ def main() -> int:
         runner.check(f"I  nums={nums}", square_i(nums), expected)
         runner.check(f"II nums={nums}", square_ii(nums), expected)
 
-    print("\n[6] 方法签名核对（LeetCode 靠名字来找你的函数）")
+    print("\n[6] 回文数  Solution.isPalindrome")
+    is_palindrome = load("009_palindrome_number.py")().isPalindrome
+    for x, expected in [
+        (121, True),            # 题目示例 1
+        (-121, False),          # 题目示例 2
+        (10, False),            # 题目示例 3：末位 0 的陷阱
+        (0, True),
+        (1, True),
+        (11, True),
+        (1001, True),
+        (1221, True),           # 偶数位
+        (12321, True),          # 奇数位
+        (123, False),
+        (100, False),
+        (120, False),           # 这个用例反而测不出「漏判末位 0」
+        (2147447412, True),     # int 范围内的大回文
+        (2147483647, False),    # int 上限本身
+    ]:
+        runner.check(f"x={x}", is_palindrome(x), expected)
+
+    print("\n[7] 方法签名核对（LeetCode 靠名字来找你的函数）")
     runner.signature("001_two_sum.py", "twoSum", ["self", "nums", "target"], "List[int]")
+    runner.signature("009_palindrome_number.py", "isPalindrome", ["self", "x"], "bool")
     runner.signature("020_valid_parentheses.py", "isValid", ["self", "s"], "bool")
     runner.signature(
         "021_merge_two_sorted_lists.py", "mergeTwoLists",
