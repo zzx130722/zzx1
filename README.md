@@ -190,15 +190,24 @@ dev-basics/
 - **[GIT-WORKFLOW.md](GIT-WORKFLOW.md)**：任务二 Git 实操手册——三区模型、规范提交、分支与 PR 流程、急救手册
 - **[PROMPT-GUIDE.md](PROMPT-GUIDE.md)**：任务四 Prompt 三原则——上下文给足 / 任务拆小 / 约束明确，含填空模板与四个实战范例
 - **[PROMPT-LAB.md](PROMPT-LAB.md)**：任务四实战记录——逐条记下实际用的 prompt 与效果，附体检表
+- **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**：⭐ **和 AI 结对五天的使用心得**——五条最值钱的经验、提问对照表、三类必修的验收、AI 会犯的三类错，全部来自本项目的真实事故
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
-- **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——三个算法套路、易错边界用例与验收标准
-- **[leetcode/LEETCODE-HOWTO.md](leetcode/LEETCODE-HOWTO.md)**：怎么把题解跑到 LeetCode 网站上——可粘贴代码、页面七步、报错对照表
-- **[leetcode/two_sum_walkthrough.md](leetcode/two_sum_walkthrough.md)**：两数之和的新手逐行详解——两种解法对比、示例走查、实测性能
-- **[leetcode/two_sum_visual.html](leetcode/two_sum_visual.html)**：两数之和可交互图解——点着按钮看算法逐轮推进，可对比「先查再存 / 先存再查」
+- **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——算法套路、易错边界用例与验收标准
+- **[leetcode/LEETCODE-HOWTO.md](leetcode/LEETCODE-HOWTO.md)**：怎么把题解跑到 LeetCode 网站上——格式差异、页面操作、报错对照表
+- **[leetcode/submit/README.md](leetcode/submit/README.md)**：七道题的**可直接粘贴版**说明——含 SQL 题的特殊格式
+- **新手逐行讲解**（3 份）：[two_sum](leetcode/two_sum_walkthrough.md) /
+  [search_insert](leetcode/search_insert_walkthrough.md) /
+  [subarrays_squares](leetcode/subarrays_squares_walkthrough.md)
+- **可交互图解**（2 个）：[two_sum_visual.html](leetcode/two_sum_visual.html) /
+  [search_insert_visual.html](leetcode/search_insert_visual.html)——点按钮看算法逐轮推进
 
 ### Git 现状
 
 仓库已推送到 GitHub：**[zzx130722/zzx1](https://github.com/zzx130722/zzx1)**（提交历史与推送状态见 [PROGRESS.md](PROGRESS.md)）。
+
+> ⚠️ 截至 2026-10-19，**本地领先远程 17 个提交**还没推。推送要用系统终端
+> （`Win+R` → `powershell`），在 VS Code 集成终端里会报 `502` ——
+> 原因和排查过程记在 [AI-USAGE-NOTES.md](AI-USAGE-NOTES.md) 第五节。
 
 远程 `origin` 曾临时指向本地裸仓库（`../local-remote/dev-basics.git`），用于在没有账号时练通 push / PR 全流程；现已切换为 GitHub 真实地址。切换方式见 GIT-WORKFLOW.md 第五节。
 
