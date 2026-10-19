@@ -180,6 +180,7 @@ dev-basics/
 ├── PROMPT-LAB.md           # 任务四：Prompt 实战记录（每次实验一条）
 ├── PROGRESS.md             # 学习进度看板（四任务状态 + 勾选清单）
 ├── WORKBUDDY-NOTES.md      # WorkBuddy 使用心得（模式/记忆/技能/连接器/边界）
+├── MY-WORKBUDDY-NOTES.md   # ⭐ 第一人称复盘：我这四天的真实经历与还没做的事
 ├── ai-plan/                # ⭐ 下一阶段：AI 学习计划（12 周，项目驱动）
 │   ├── AI-LEARNING-PLAN.md #   计划正文：四个阶段、三个作品、验收标准
 │   └── roadmap.html        #   可打勾的 12 周进度看板（浏览器打开）
@@ -196,6 +197,7 @@ dev-basics/
 - **[PROMPT-LAB.md](PROMPT-LAB.md)**：任务四实战记录——逐条记下实际用的 prompt 与效果，附体检表
 - **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**：⭐ **和 AI 结对五天的使用心得**——五条最值钱的经验、提问对照表、三类必修的验收、AI 会犯的三类错，全部来自本项目的真实事故
 - **[WORKBUDDY-NOTES.md](WORKBUDDY-NOTES.md)**：⭐ **WorkBuddy 使用心得**——三种模式怎么选、三层记忆怎么用、技能/连接器/自动化怎么配、工具边界与排查表（工具操作层，与上一份互补）
+- **[MY-WORKBUDDY-NOTES.md](MY-WORKBUDDY-NOTES.md)**：⭐⭐ **我自己的使用复盘（第一人称）**——四天的真实轨迹、六个「我以为是这样」的坑、改掉的三个习惯、**以及三件我到现在还没做到的事**（没在 LeetCode 提交过、pandas 没动、26 个提交没推）
 - **[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)**：⭐ **下一阶段 AI 学习计划（12 周）**——项目驱动，四个阶段三个作品：CLI 助手 → RAG 知识库 → 工具型 Agent；含每周任务、验收标准、时间缩放方案
 - **[ai-plan/roadmap.html](ai-plan/roadmap.html)**：12 周进度看板——可勾选、自动算完成率、勾选状态存在浏览器本地
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
