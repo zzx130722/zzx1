@@ -1,7 +1,7 @@
-# LeetCode 题解 · 7 题
+# LeetCode 题解 · 8 题
 
 > 任务三「AI 工具初体验」的第一部分。
-> 四道简单题覆盖四种最基本的套路：**哈希表 / 栈 / 双指针 / 二分查找**；
+> 五道简单题覆盖五种最基本的套路：**哈希表 / 栈 / 双指针 / 二分查找 / 数字反转**；
 > 再加一道困难题（**平方和 II**，树状数组 + 贡献转化）
 > 和一道 **SQL 题**（`LEFT JOIN`）。
 
@@ -23,7 +23,7 @@
 **最快的方式**：打开 [`submit/`](submit/) 目录，里面**一个文件对应一道题**，
 整文件复制 → 粘到 LeetCode → 提交，不用改任何东西。
 （这些文件是按 LeetCode 的判题方式实测过的：Python 版
-`./.venv/Scripts/python.exe leetcode/verify_submit.py` → 49 项全通过；
+`./.venv/Scripts/python.exe leetcode/verify_submit.py` → 64 项全通过；
 SQL 版 `./.venv/Scripts/python.exe leetcode/verify_sql.py` → 5 项全通过。）
 
 **想弄懂为什么不能直接粘 `leetcode/` 里的文件**，看 **[LEETCODE-HOWTO.md](LEETCODE-HOWTO.md)** ——
@@ -47,14 +47,16 @@ SQL 版 `./.venv/Scripts/python.exe leetcode/verify_sql.py` → 5 项全通过�
 | [valid_parentheses.py](valid_parentheses.py) | 20. 有效的括号 | 栈、后进先出 | O(n) | O(n) |
 | [merge_two_sorted_lists.py](merge_two_sorted_lists.py) | 21. 合并两个有序链表 | 双指针、哑节点 | O(m+n) | O(1) |
 | [search_insert.py](search_insert.py) | 35. 搜索插入位置 | 二分查找、左闭右开 | O(log n) | O(1) |
+| [submit/009_palindrome_number.py](submit/009_palindrome_number.py) | 9. 回文数 | 数字反转取一半、末位 0 判断 | O(log n) | O(1) |
 | [submit/2913_...\_i.py](submit/2913_subarrays_distinct_sum_of_squares_i.py) | 2913. 子数组不同元素数目的平方和 I | 枚举 + 集合（**[讲解](subarrays_squares_walkthrough.md)**） | O(n²) | O(n) |
 | [submit/2916_...\_ii.py](submit/2916_subarrays_distinct_sum_of_squares_ii.py) | 2916. 子数组不同元素数目的平方和 II | 树状数组、区间加 + 区间求和（**[讲解](subarrays_squares_walkthrough.md)**） | O(n log n) | O(n) |
 | [submit/175_combine_two_tables.sql](submit/175_combine_two_tables.sql) | 175. 组合两个表（**SQL 题**） | 左连接 `LEFT JOIN` | O(m+n) | O(1) |
 
-> 后两题只有「提交版」（直接放在 `submit/`），没有 `leetcode/` 下的练习版 ——
-> 因为当时的需求就是"给我能直接粘的代码"。教学材料改用
+> 回文数与平方和两题**只有「提交版」**（直接放在 `submit/`），没有 `leetcode/` 下的练习版 ——
+> 因为当时的需求就是"给我能直接粘的代码"。平方和的教学材料在
 > **[subarrays_squares_walkthrough.md](subarrays_squares_walkthrough.md)**，里面把
-> 「为什么 O(n²) 会超时 → 按右端点分组 → 平方和增量公式 → 两个树状数组」整条线推了一遍。
+> 「为什么 O(n²) 会超时 → 按右端点分组 → 平方和增量公式 → 两个树状数组」整条线推了一遍；
+> 回文数的要点写在 [submit/README.md](submit/README.md) 的「回文数（9）」一节。
 
 ## 想交到 LeetCode 上？用 `submit/`
 
@@ -67,11 +69,12 @@ SQL 版 `./.venv/Scripts/python.exe leetcode/verify_sql.py` → 5 项全通过�
 | [valid_parentheses.py](valid_parentheses.py) | [submit/020_valid_parentheses.py](submit/020_valid_parentheses.py) | `isValid` |
 | [merge_two_sorted_lists.py](merge_two_sorted_lists.py) | [submit/021_merge_two_sorted_lists.py](submit/021_merge_two_sorted_lists.py) | `mergeTwoLists` |
 | [search_insert.py](search_insert.py) | [submit/035_search_insert_position.py](submit/035_search_insert_position.py) | `searchInsert` |
+| —（提交版直供） | [submit/009_palindrome_number.py](submit/009_palindrome_number.py) | `isPalindrome` |
 | —（提交版直供） | [submit/2913_subarrays_distinct_sum_of_squares_i.py](submit/2913_subarrays_distinct_sum_of_squares_i.py) | `sumCounts` |
 | —（提交版直供） | [submit/2916_subarrays_distinct_sum_of_squares_ii.py](submit/2916_subarrays_distinct_sum_of_squares_ii.py) | `sumCounts` |
 | —（SQL 题，格式不同） | [submit/175_combine_two_tables.sql](submit/175_combine_two_tables.sql) | 无方法名，直接交查询语句 |
 
-Python 提交版由 [verify_submit.py](verify_submit.py) 按 LeetCode 的判题方式校验（49 项全通过）；
+Python 提交版由 [verify_submit.py](verify_submit.py) 按 LeetCode 的判题方式校验（64 项全通过）；
 SQL 提交版由 [verify_sql.py](verify_sql.py) 用 SQLite 实跑校验（5 项全通过）：
 
 ```bash
@@ -86,7 +89,7 @@ SQL 提交版由 [verify_sql.py](verify_sql.py) 用 SQLite 实跑校验（5 项�
 > 📖 搜索插入位置也有：[search_insert_walkthrough.md](search_insert_walkthrough.md)
 > —— 从"为什么不能一个个数"讲起，把二分的边界问题一次说清。
 
-## 四个套路，各记一句话
+## 几个套路，各记一句话
 
 **哈希表（Two Sum）** —— 暴力解法慢在"重复地找另一半"。用字典把"见过的数"存下来，
 把 O(n) 的查找压成 O(1)。核心是**先查再存**，否则重复值会匹配到自己。
@@ -101,6 +104,10 @@ SQL 提交版由 [verify_sql.py](verify_sql.py) 用 SQLite 实跑校验（5 项�
 **二分查找（Search Insert Position）** —— 数组有序就能每轮砍一半。
 难点从来不是循环，而是**边界**：区间开闭、`<` 还是 `>=`、返回 left 还是 right。
 本文用"左闭右开"模板，`while left < right` + `return left`，不用记等号。
+
+**数字反转取一半（Palindrome Number）** —— 回文要求"正读反读一样"，天然就想反转。
+但**不用反完**：反到一半就可以开始比，反完整数在 Java / C++ 里还会溢出。
+两个必判的前置条件：**负数**、**末位是 0 但不是 0 本身**。
 
 **树状数组 + 贡献转化（平方和 II）** —— 直接枚举所有子数组是 O(n²)，n=10⁵ 要 166 秒。
 换思路：**按右端点分组**，右端点每挪一格，只有一段 `A[l]` 会整体加 1；
@@ -121,6 +128,7 @@ SQL 提交版由 [verify_sql.py](verify_sql.py) 用 SQLite 实跑校验（5 项�
 | Valid Parentheses | `s="([)]"` | 数量都对得上，但顺序错了；只看数量会误判为有效 | `False` |
 | Merge Two Sorted Lists | `l1=[], l2=[0]` | 忘记处理"一开始就有链表为空"，会崩或返回错 | `[0]` |
 | Search Insert Position | `nums=[1,3,5,6], target=7` | 插在末尾时答案等于 `len(nums)`，写错边界会越界或返回 3 | `4` |
+| Palindrome Number | `x=10` | 漏掉"末位是 0 但不是 0"的判断，反转一半后变成 `1` 和 `1` 比，误判为回文（`100`、`1000` 同样错，但 `120` 反而对） | `False` |
 | 平方和 II | `nums=[1,2,1]` | `1` 出现两次；忘了"已出现过就不再增加计数"、或忘了更新 `last`，实测都会算成 `20` 而不是 `15` | `15` |
 | 组合两个表（SQL） | 有人没有地址（示例里的 Allen Wang） | 用 `JOIN` / `WHERE` 代替 `LEFT JOIN`，这一行会**整行消失** | 该行保留，city/state 为 `null` |
 

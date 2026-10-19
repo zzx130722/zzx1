@@ -10,7 +10,7 @@
 | ① 开发环境搭建 | ✅ 完成 | `.venv/` + 全套配置，9 项实测通过 |
 | ② Git 基础补课 | ✅ 完成 | **10 次规范提交**，全部已推送到 GitHub |
 | ④ Prompt 基础三原则 | 🟡 已开始实战（见 PROMPT-LAB） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md) |
-| ③ AI 工具初体验 | 🟡 LeetCode 7 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
+| ③ AI 工具初体验 | 🟡 LeetCode 8 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
 | ＋ 额外产出 | ✅ 完成 | **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)** —— 和 AI 结对五天的使用心得（10-19） |
 
 ---
@@ -51,7 +51,7 @@
 
 ## 🟡 任务三：AI 工具初体验
 
-**LeetCode 部分已完成**（7 题：4 道简单题 35 个用例 + 平方和两题 + 1 道 SQL 题，全部通过），Pandas 部分未开始。
+**LeetCode 部分已完成**（8 题：5 道简单题 + 平方和两题 + 1 道 SQL 题，全部通过），Pandas 部分未开始。
 
 - [x] `leetcode/` 四个题解文件（各含题目、思路、复杂度、边界用例与自测）
   - [x] Two Sum（哈希表）—— 最易错：`[3,3], target=6` 必须返回 `[0,1]`
@@ -61,13 +61,15 @@
 - [x] `leetcode/run_all.py` 一键自测入口
 - [x] `leetcode/LEETCODE-HOWTO.md` —— 怎么把题解提交到 LeetCode 网站
       （含格式差异表、七步操作、八种常见报错对照）
-- [x] `leetcode/submit/` —— **七道题的可直接粘贴版**（一个文件一道题，整文件复制即可）
+- [x] `leetcode/submit/` —— **八道题的可直接粘贴版**（一个文件一道题，整文件复制即可）
+  - [x] 回文数（9）—— 只反转后一半数字；两个前置判断：负数、末位 0 但不是 0 本身
+        （漏掉后者时 `10`/`100`/`1000` 都会误判为回文，但 `120` 反而对 —— 很难靠随手试发现）
   - [x] 子数组不同元素数目的平方和 I（2913，n ≤ 100，暴力 O(n²)）
   - [x] 子数组不同元素数目的平方和 II（2916，n ≤ 10⁵，树状数组 O(n log n) + 取模）
         —— **两题题目描述一字不差**，只有数据范围和取模不同；拿 I 去交 II 会 TLE（实测约 166s vs 0.58s）
   - [x] 组合两个表（175，SQL 题）—— **格式与算法题完全不同**：没有 `class Solution`、
         没有方法名，直接交一条查询语句；考点是 `LEFT JOIN`（没有地址的人也要保留）
-- [x] `leetcode/verify_submit.py` —— 模拟 LeetCode 判题环境校验粘贴版，**49 项全通过**
+- [x] `leetcode/verify_submit.py` —— 模拟 LeetCode 判题环境校验粘贴版，**64 项全通过**
 - [x] `leetcode/verify_sql.py` —— 用 SQLite 实跑校验 SQL 版，**5 项全通过**
       （比对「行」与「列名」；附三种错误写法对照，确认检查真的有效）
 - [x] 面向零基础的逐行讲解 + 可交互图解
@@ -107,10 +109,10 @@ python leetcode/verify_sql.py
 
 - 远程：`https://github.com/zzx130722/zzx1.git`（分支 `main`）
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
-- 本地共 **41 个提交**，远程 **21 个**（`3aa5082`）
-- ⚠️ **本地领先远程 20 个提交**（截至 2026-10-19），需要你自己推一次
+- 本地共 **44 个提交**，远程 **21 个**（`3aa5082`）
+- ⚠️ **本地领先远程 23 个提交**（截至 2026-10-19），需要你自己推一次
   （累积了 10-14 / 10-15 / 10-19 的改动，具体见 `git log --oneline`）
-- 仓库追踪文件 34 项（`.venv` 仍未追踪）
+- 仓库追踪文件 35 项（`.venv` 仍未追踪）
 - 备份标签仍在：`backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
 
 ## 推送备忘（重要）

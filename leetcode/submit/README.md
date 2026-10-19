@@ -6,6 +6,7 @@
 | 文件 | 题目 | 方法名（不能改） | 题目地址 |
 |---|---|---|---|
 | [001_two_sum.py](001_two_sum.py) | 1. 两数之和 | `twoSum` | <https://leetcode.cn/problems/two-sum/> |
+| [009_palindrome_number.py](009_palindrome_number.py) | 9. 回文数 | `isPalindrome` | <https://leetcode.cn/problems/palindrome-number/> |
 | [020_valid_parentheses.py](020_valid_parentheses.py) | 20. 有效的括号 | `isValid` | <https://leetcode.cn/problems/valid-parentheses/> |
 | [021_merge_two_sorted_lists.py](021_merge_two_sorted_lists.py) | 21. 合并两个有序链表 | `mergeTwoLists` | <https://leetcode.cn/problems/merge-two-sorted-lists/> |
 | [035_search_insert_position.py](035_search_insert_position.py) | 35. 搜索插入位置 | `searchInsert` | <https://leetcode.cn/problems/search-insert-position/> |
@@ -66,6 +67,28 @@ SQL 题本地不好试，所以另配了一个脚本，用 Python 自带的 SQLi
 > 拿 I 的暴力写法去交 II 会**超时**（实测 n=10⁵ 需约 166 秒）。
 > 分不清就先交 I 的版本 —— 它的 `% MOD` 是无害的，小数据下答案不会超过模数。
 > 两个文件的解法详见下方「平方和这两题」。
+
+## 回文数（9）
+
+三个判断，缺一个就会错：
+
+```python
+if x < 0 or (x % 10 == 0 and x != 0):   # 负数 / 末位是 0 但不是 0 本身
+    return False
+```
+
+**负数**好理解：`-121` 倒过来是 `121-`，前面多了个负号，永远不相等。
+
+**末位是 0** 这个条件最容易被漏掉，而且**漏了以后很多用例还是对的**。
+实测漏掉它时：`10 → True`（错）、`100 → True`（错）、`1000 → True`（错），
+但 `120 → False`（对）、`121 → True`（对）—— 所以随手试几个数根本发现不了。
+原因：反转后一半时，末尾的 0 被丢掉，`10` 会退化成 `1` 和 `1` 相比，看起来"回文"了。
+
+**为什么只反转后一半**：反转整个数在 Python 里不会溢出（大整数自动扩容），
+但在 Java / C++ 里会 int 溢出。只反转一半是标准做法，顺带把复杂度压到 O(log₁₀n)。
+奇数位时中间那位不影响回文，所以用 `x == reversed_half // 10` 把它去掉再比。
+
+实测：17 个用例全过，另与 `str(x) == str(x)[::-1]` 对拍 **4 万个整数 0 组不一致**。
 
 ## 和 `leetcode/` 下同名题解的区别
 
@@ -132,7 +155,7 @@ Solution().searchInsert([1, 3, 5, 6], 5)
 ./.venv/Scripts/python.exe leetcode/verify_submit.py
 ```
 
-实测结果：**49 项全部通过**（六道题共 43 个用例 + 6 项方法签名核对）。
+实测结果：**64 项全部通过**（七道题共 57 个用例 + 7 项方法签名核对）。
 所以你粘上去之后如果报错，可以先跑一遍这个脚本 —— 脚本全过，
 说明代码本身没问题，那就是粘贴或提交时的问题。
 
