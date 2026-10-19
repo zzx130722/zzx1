@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 学习计划 · 12 周进度看板</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#ffffff; --text:#1b1f2a; --muted:#667085;
+    --line:#e4e7ee; --soft:#f0f2f7; --accent:#4f46e5;
+    --ok:#15803d; --ok-bg:#e9f7ee;
+  }
+  html[data-theme="dark"]{
+    --bg:#0f1218; --card:#171b23; --text:#e8eaf0; --muted:#98a2b3;
+    --line:#262b36; --soft:#1e232d; --accent:#8b8cf7;
+    --ok:#4ade80; --ok-bg:#14301f;
+  }
+  @media (prefers-color-scheme: dark){
+    html:not([data-theme="light"]){
+      --bg:#0f1218; --card:#171b23; --text:#e8eaf0; --muted:#98a2b3;
+      --line:#262b36; --soft:#1e232d; --accent:#8b8cf7;
+      --ok:#4ade80; --ok-bg:#14301f;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:28px 16px 64px; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:960px;margin:0 auto}
+  header{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+  h1{font-size:26px;margin:0 0 6px;letter-spacing:-.3px}
+  .sub{color:var(--muted);font-size:14px;margin:0}
+  .tools{display:flex;gap:8px}
+  button{
+    font:inherit;font-size:13px;padding:7px 12px;border-radius:8px;cursor:pointer;
+    border:1px solid var(--line);background:var(--card);color:var(--text);
+  }
+  button:hover{border-color:var(--accent);color:var(--accent)}
+  .panel{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;margin-bottom:14px;
+  }
+  .overall{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .big{font-size:32px;font-weight:700;letter-spacing:-1px;min-width:86px}
+  .big small{font-size:14px;color:var(--muted);font-weight:400}
+  .bar{flex:1;min-width:200px;height:10px;background:var(--soft);border-radius:99px;overflow:hidden}
+  .bar > i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .25s ease}
+  .hint{color:var(--muted);font-size:13px;margin:6px 0 0}
+  .phase{border-left:4px solid var(--c);margin-bottom:16px}
+  .phase-head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:4px}
+  .phase-head h2{font-size:17px;margin:0}
+  .tag{font-size:12px;color:var(--c);background:color-mix(in srgb, var(--c) 12%, transparent);
+       padding:2px 8px;border-radius:99px;border:1px solid color-mix(in srgb, var(--c) 28%, transparent)}
+  .goal{color:var(--muted);font-size:13px;margin:2px 0 12px}
+  .week{border-top:1px dashed var(--line);padding:10px 0 4px}
+  .week:first-of-type{border-top:0}
+  .week-head{display:flex;gap:10px;align-items:baseline;font-size:14px;margin-bottom:6px}
+  .week-head b{font-size:14px}
+  .week-head span{color:var(--muted);font-size:12px}
+  .week.now{background:var(--soft);border-radius:10px;padding:10px 12px;margin:6px -12px}
+  .week.now .week-head b::after{content:" · 本周";color:var(--accent);font-size:12px;font-weight:600}
+  label{display:flex;gap:9px;align-items:flex-start;padding:4px 0;font-size:14px;cursor:pointer}
+  input[type=checkbox]{margin-top:5px;width:16px;height:16px;accent-color:var(--accent);flex:none;cursor:pointer}
+  label.done span{color:var(--muted);text-decoration:line-through}
+  .accept{font-size:12.5px;color:var(--muted);margin-top:8px;padding:8px 10px;background:var(--soft);border-radius:8px}
+  .accept b{color:var(--ok)}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;margin-top:26px}
+  @media (max-width:560px){
+    h1{font-size:21px}
+    .big{font-size:26px}
+    body{padding:18px 12px 48px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>AI 学习计划 · 12 周</h1>
+      <p class="sub">项目驱动 · 每周 8-10 小时 · 三个作品：CLI 助手 → RAG 知识库 → 工具型 Agent</p>
+    </div>
+    <div class="tools">
+      <button id="themeBtn" type="button">切换主题</button>
+      <button id="resetBtn" type="button">清空进度</button>
+    </div>
+  </header>
+
+  <section class="panel">
+    <div class="overall">
+      <div class="big"><span id="pct">0%</span><br><small><span id="done">0</span> / <span id="total">0</span> 项</small></div>
+      <div style="flex:1;min-width:200px">
+        <div class="bar"><i id="barFill"></i></div>
+        <p class="hint" id="hint">勾选会在本机保存，刷新不丢。</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="phases"></div>
+
+  <footer>计划正文：AI-LEARNING-PLAN.md · 起始周 2026-10-19 · 允许每两周调整一次</footer>
+</div>
+
+<script>
+(function () {
+  var START = new Date(2026, 9, 19); // 2026-10-19 周一
+
+  var PHASES = [
+    {
+      title: "阶段 0 · 补地基",
+      c: "#6366f1",
+      tag: "第 1 周",
+      goal: "目标：把「HTTP + JSON + 数据处理」跑熟，顺手还掉 pandas 两个 notebook。",
+      weeks: [
+        {
+          w: "第 1 周", d: "10/19 - 10/25",
+          items: [
+            "用 requests 调一个公开 API，打印返回的 JSON",
+            "加 try/except：超时、404、返回不是 JSON 分别怎么处理",
+            "建 .env + .env.example，确认 git status 看不到真 key",
+            "pandas ①：读 CSV + groupby 聚合",
+            "pandas ②：缺失值处理 + merge 合并",
+            "周末小项目：取 100 条数据 → 存 CSV → 聚合 → 打印前 5 名"
+          ]
+        }
+      ],
+      accept: "验收：一条命令跑出结果；断网时给人话报错；.env 不被 Git 追踪。"
+    },
+    {
+      title: "阶段 1 · 项目 A：命令行 AI 助手",
+      c: "#0d9488",
+      tag: "第 2-3 周",
+      goal: "目标：不用任何框架，用 requests 直接调模型 API，做成能连续聊天的程序。",
+      weeks: [
+        {
+          w: "第 2 周", d: "10/26 - 11/01",
+          items: [
+            "选厂商（DeepSeek / 通义 / 智谱 / Kimi）注册拿 key",
+            "先用 curl 发一次请求，看到返回的 JSON",
+            "换成 Python，封装 chat(messages) -> str",
+            "加 system 角色，控制回答风格",
+            "加多轮：把历史 messages 一起发回去",
+            "做成 while True 的命令行循环"
+          ]
+        },
+        {
+          w: "第 3 周", d: "11/02 - 11/08",
+          items: [
+            "流式输出：边生成边打印（SSE，剥掉 data: 前缀）",
+            "超时 + 重试 3 次 + 指数退避",
+            "错误分类：401 / 429 / 5xx 分别给人话提示",
+            "统计 token 与费用，每次请求累加",
+            "上下文裁剪：超过 N 轮丢掉最早对话",
+            "写 README + 录 1 分钟演示"
+          ]
+        }
+      ],
+      accept: "验收：换厂商只改两行；断网重试后不崩；连聊 20 轮费用可见；能讲清为什么历史消息要回传。"
+    },
+    {
+      title: "阶段 2 · 项目 B：个人知识库问答（RAG）",
+      c: "#d97706",
+      tag: "第 4-6 周",
+      goal: "目标：让模型回答你自己文档里的内容，并且说得出出处。",
+      weeks: [
+        {
+          w: "第 4 周", d: "11/09 - 11/15",
+          items: [
+            "把 dev-basics 的 markdown 按标题切段（300-500 字，带 overlap）",
+            "用关键词匹配做检索（先不碰向量）",
+            "拼 prompt：只根据资料回答，没有就说不知道",
+            "跑 10 个问题，记录哪些答错了"
+          ]
+        },
+        {
+          w: "第 5 周", d: "11/16 - 11/22",
+          items: [
+            "调 embedding API（或本地 bge-small-zh）把每段变向量",
+            "用 numpy 手写余弦相似度做 top-k 检索",
+            "对比第 4 周：哪些问题变好、哪些变差",
+            "证明需要后再引入 FAISS / Chroma"
+          ]
+        },
+        {
+          w: "第 6 周", d: "11/23 - 11/29",
+          items: [
+            "答案强制带 [来源: 文件名#段落号]",
+            "建 20 题评估集（10 可查、5 跨文件、5 文档没有）",
+            "人工打分记到 CSV：答对 / 答错 / 编造",
+            "针对最差 3 题做一次优化（切分 / top-k / prompt）"
+          ]
+        }
+      ],
+      accept: "验收：20 题答对 ≥16；5 个无答案问题至少 4 个说「未找到」；每个答案能点回原文。"
+    },
+    {
+      title: "阶段 3 · 项目 C：会调工具的 Agent",
+      c: "#db2777",
+      tag: "第 7-9 周",
+      goal: "目标：模型不只「说」，还能决定调用你的函数，并根据结果继续下一步。",
+      weeks: [
+        {
+          w: "第 7 周", d: "11/30 - 12/06",
+          items: [
+            "搞懂 function calling：模型只输出「调用什么」，执行是你的代码",
+            "定义 3 个工具：read_file / query_csv / http_get",
+            "实现循环：要工具 → 执行 → 结果回喂 → 继续",
+            "加 max_steps=8，防死循环"
+          ]
+        },
+        {
+          w: "第 8 周", d: "12/07 - 12/13",
+          items: [
+            "工具参数校验：参数错时把错误回喂让模型重试",
+            "连续失败 2 次就换策略或告知用户",
+            "危险操作前必须 input 确认",
+            "每步「思考 → 工具 → 结果」落盘成日志"
+          ]
+        },
+        {
+          w: "第 9 周", d: "12/14 - 12/20",
+          items: [
+            "真任务：扫描 leetcode/ 统计用例数并生成周报",
+            "再做一个注定失败的任务，验收优雅退出",
+            "写 README，说明工具边界与限制"
+          ]
+        }
+      ],
+      accept: "验收：5 个任务至少 4 个独立完成；失败不死循环、不假装成功；危险操作一定问人。"
+    },
+    {
+      title: "阶段 4 · 工程化 + 上线",
+      c: "#4f46e5",
+      tag: "第 10-12 周",
+      goal: "目标：把「能跑的脚本」变成「别人能用的产品」。",
+      weeks: [
+        {
+          w: "第 10 周", d: "12/21 - 12/27",
+          items: [
+            "用 Streamlit 或 FastAPI 给 RAG 加界面",
+            "把三个项目整理成统一的目录结构"
+          ]
+        },
+        {
+          w: "第 11 周", d: "12/28 - 01/03",
+          items: [
+            "加日志、限流（每人每天 N 次）、成本上限",
+            "key 只放服务端，错误页友好",
+            "写自动化冒烟测试（启动 → 问一句 → 有回答）"
+          ]
+        },
+        {
+          w: "第 12 周", d: "01/04 - 01/10",
+          items: [
+            "部署上线，拿到一个能发给朋友的链接",
+            "README：截图 + 架构图 + 怎么跑",
+            "录 3 分钟演示视频",
+            "写一篇复盘：做了什么 / 卡在哪 / 下次改什么"
+          ]
+        }
+      ],
+      accept: "验收：朋友不问你能用起来；你能 5 分钟讲清数据流；三个项目都有 README 和截图。"
+    }
+  ];
+
+  var KEY = "ai-plan-2026-progress-v1";
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { saved = {}; }
+
+  var boxes = [];
+  var weekCounter = 0;
+  var root = document.getElementById("phases");
+
+  PHASES.forEach(function (phase, pi) {
+    var card = document.createElement("section");
+    card.className = "panel phase";
+    card.style.setProperty("--c", phase.c);
+
+    var head = document.createElement("div");
+    head.className = "phase-head";
+    var h2 = document.createElement("h2");
+    h2.textContent = phase.title;
+    var tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = phase.tag;
+    head.appendChild(h2); head.appendChild(tag);
+    card.appendChild(head);
+
+    var goal = document.createElement("p");
+    goal.className = "goal";
+    goal.textContent = phase.goal;
+    card.appendChild(goal);
+
+    phase.weeks.forEach(function (week, wi) {
+      var box = document.createElement("div");
+      box.className = "week";
+      weekCounter += 1;
+      box.dataset.week = String(weekCounter);
+      var wh = document.createElement("div");
+      wh.className = "week-head";
+      var b = document.createElement("b"); b.textContent = week.w;
+      var s = document.createElement("span"); s.textContent = week.d;
+      wh.appendChild(b); wh.appendChild(s);
+      box.appendChild(wh);
+
+      week.items.forEach(function (text, ii) {
+        var id = "p" + pi + "-w" + wi + "-i" + ii;
+        var label = document.createElement("label");
+        var cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.id = id;
+        cb.checked = !!saved[id];
+        var span = document.createElement("span");
+        span.textContent = text;
+        label.appendChild(cb); label.appendChild(span);
+        if (cb.checked) label.classList.add("done");
+        cb.addEventListener("change", function () {
+          saved[id] = cb.checked;
+          label.classList.toggle("done", cb.checked);
+          try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+          render();
+        });
+        box.appendChild(label);
+        boxes.push(cb);
+      });
+      card.appendChild(box);
+    });
+
+    var acc = document.createElement("div");
+    acc.className = "accept";
+    acc.innerHTML = "<b>" + phase.accept.slice(0, 3) + "</b>" + phase.accept.slice(3);
+    card.appendChild(acc);
+
+    root.appendChild(card);
+  });
+
+  function render() {
+    var done = boxes.filter(function (b) { return b.checked; }).length;
+    var total = boxes.length;
+    var pct = total ? Math.round(done * 100 / total) : 0;
+    document.getElementById("pct").textContent = pct + "%";
+    document.getElementById("done").textContent = done;
+    document.getElementById("total").textContent = total;
+    document.getElementById("barFill").style.width = pct + "%";
+  }
+
+  // 按起始周算「本周」，仅在 1-12 周内高亮
+  var days = Math.floor((new Date() - START) / 86400000);
+  var weekNo = Math.floor(days / 7) + 1;
+  if (weekNo >= 1 && weekNo <= 12) {
+    var el = document.querySelector('.week[data-week="' + weekNo + '"]');
+    if (el) el.classList.add("now");
+    document.getElementById("hint").textContent =
+      "按 10/19 起算这是第 " + weekNo + " 周。勾选会在本机保存，刷新不丢。";
+  }
+
+  document.getElementById("resetBtn").addEventListener("click", function () {
+    if (!confirm("确定清空所有勾选？此操作不可撤销。")) return;
+    saved = {};
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    boxes.forEach(function (b) {
+      b.checked = false;
+      b.parentNode.classList.remove("done");
+    });
+    render();
+  });
+
+  document.getElementById("themeBtn").addEventListener("click", function () {
+    var cur = document.documentElement.getAttribute("data-theme");
+    var isDark = cur ? cur === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
