@@ -179,6 +179,9 @@ dev-basics/
 ├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
 ├── PROMPT-LAB.md           # 任务四：Prompt 实战记录（每次实验一条）
 ├── PROGRESS.md             # 学习进度看板（四任务状态 + 勾选清单）
+├── ai-plan/                # ⭐ 下一阶段：AI 学习计划（12 周，项目驱动）
+│   ├── AI-LEARNING-PLAN.md #   计划正文：四个阶段、三个作品、验收标准
+│   └── roadmap.html        #   可打勾的 12 周进度看板（浏览器打开）
 └── README.md               # 本文件
 ```
 
@@ -191,10 +194,12 @@ dev-basics/
 - **[PROMPT-GUIDE.md](PROMPT-GUIDE.md)**：任务四 Prompt 三原则——上下文给足 / 任务拆小 / 约束明确，含填空模板与四个实战范例
 - **[PROMPT-LAB.md](PROMPT-LAB.md)**：任务四实战记录——逐条记下实际用的 prompt 与效果，附体检表
 - **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**：⭐ **和 AI 结对五天的使用心得**——五条最值钱的经验、提问对照表、三类必修的验收、AI 会犯的三类错，全部来自本项目的真实事故
+- **[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)**：⭐ **下一阶段 AI 学习计划（12 周）**——项目驱动，四个阶段三个作品：CLI 助手 → RAG 知识库 → 工具型 Agent；含每周任务、验收标准、时间缩放方案
+- **[ai-plan/roadmap.html](ai-plan/roadmap.html)**：12 周进度看板——可勾选、自动算完成率、勾选状态存在浏览器本地
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
 - **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——算法套路、易错边界用例与验收标准
 - **[leetcode/LEETCODE-HOWTO.md](leetcode/LEETCODE-HOWTO.md)**：怎么把题解跑到 LeetCode 网站上——格式差异、页面操作、报错对照表
-- **[leetcode/submit/README.md](leetcode/submit/README.md)**：七道题的**可直接粘贴版**说明——含 SQL 题的特殊格式
+- **[leetcode/submit/README.md](leetcode/submit/README.md)**：八道题的**可直接粘贴版**说明——含 SQL 题的特殊格式
 - **新手逐行讲解**（3 份）：[two_sum](leetcode/two_sum_walkthrough.md) /
   [search_insert](leetcode/search_insert_walkthrough.md) /
   [subarrays_squares](leetcode/subarrays_squares_walkthrough.md)
