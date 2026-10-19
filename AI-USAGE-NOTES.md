@@ -1,8 +1,9 @@
 # 和 AI 结对五天 · 使用心得笔记
 
 > 时间跨度：2026-10-13 → 2026-10-19（实际干活 3 天）
-> 项目：`dev-basics`（开发环境 + Git + LeetCode 7 题 + Prompt 实验）
+> 项目：`dev-basics`（开发环境 + Git + LeetCode 8 题 + Prompt 实验）
 > 一句话总结：**AI 负责快，你负责对。AI 负责写，你负责验。**
+> 本文讲「怎么和 AI 协作」；「WorkBuddy 这个工具本身怎么用」见 **[WORKBUDDY-NOTES.md](WORKBUDDY-NOTES.md)**。
 
 这份笔记不是通用大道理，是从下面的真实事故里捞出来的：
 
