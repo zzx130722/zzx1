@@ -1,6 +1,6 @@
 # 学习进度
 
-> 最后更新：2026-10-15 14:40
+> 最后更新：2026-10-19 09:30
 > 实际执行顺序已调整为 **① → ② → ④ → ③**（④ 是方法层，不依赖环境，却是 ③ 的效率前置）
 
 ## 总览
@@ -11,6 +11,7 @@
 | ② Git 基础补课 | ✅ 完成 | **10 次规范提交**，全部已推送到 GitHub |
 | ④ Prompt 基础三原则 | 🟡 已开始实战（见 PROMPT-LAB） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md) |
 | ③ AI 工具初体验 | 🟡 LeetCode 7 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
+| ＋ 额外产出 | ✅ 完成 | **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)** —— 和 AI 结对五天的使用心得（10-19） |
 
 ---
 
@@ -106,10 +107,10 @@ python leetcode/verify_sql.py
 
 - 远程：`https://github.com/zzx130722/zzx1.git`（分支 `main`）
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
-- 本地共 **38 个提交**，远程 **21 个**（`3aa5082`）
-- ⚠️ **本地领先远程 17 个提交**，需要你自己推一次
-  （累积了 10-14 与 10-15 两天的改动，具体见 `git log --oneline`）
-- 仓库追踪文件 33 项（`.venv` 仍未追踪）
+- 本地共 **41 个提交**，远程 **21 个**（`3aa5082`）
+- ⚠️ **本地领先远程 20 个提交**（截至 2026-10-19），需要你自己推一次
+  （累积了 10-14 / 10-15 / 10-19 的改动，具体见 `git log --oneline`）
+- 仓库追踪文件 34 项（`.venv` 仍未追踪）
 - 备份标签仍在：`backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
 
 ## 推送备忘（重要）
