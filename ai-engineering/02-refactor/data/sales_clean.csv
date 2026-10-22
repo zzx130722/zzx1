@@ -1,4 +1,4 @@
-﻿order_id,region,product,amount
+order_id,region,product,amount
 SO-1001,East,notebook,1200.00
 SO-1002,East,mouse,45.50
 SO-1003,East,keyboard,199.25

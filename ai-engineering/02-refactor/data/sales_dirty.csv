@@ -1,4 +1,4 @@
-﻿order_id,region,product,amount
+order_id,region,product,amount
 DO-2001,East,notebook,1200.00
 DO-2002,East,mouse,45.50
 DO-2003,East,"monitor, 27in","1,234.50"
