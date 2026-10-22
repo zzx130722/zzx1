@@ -7,7 +7,9 @@
 | `walkthrough_textwrap.md` | 对 `textwrap._wrap_chunks`（102 行）的完整走查，切成 7 段 | 先自己看源码，卡住时看对应段 |
 | `experiments.py` | 7 个实验，每个都是「问 → 猜 → 验」 | **先猜再跑**，跑完回到走查对答案 |
 | `review-drill.md` | review 的提问模板 + 7 条常见意见的裁决 | 读第 2 节的裁决表，重点看"怎么自己验" |
-| `OSS-READING-LIST.md` | **读别人的现成项目**：去哪找、7 个入门项目的入口文件与真实规模、40 分钟走法 | 想换口味时从这里挑一个
+| `OSS-READING-LIST.md` | **读别人的现成项目**：去哪找、7 个入门项目的入口文件与真实规模、40 分钟走法 | 想换口味时从这里挑一个 |
+| `walkthrough_generate_epub.md` | 走查 37.5 万星标项目的 54 行 bash 构建脚本：**6 处问题 + 11 处修复 + 实测证据** | 先跑 `shell-lab/run_lab.sh` 看它撒谎，再读文档 |
+| `shell-lab/` | 上面那份的实验装置：原版 / 修复版 / 假 pandoc / 一键对照 | `bash shell-lab/run_lab.sh`（不用装 pandoc） |
 
 ## 跑起来
 
