@@ -1,6 +1,6 @@
 # 学习进度
 
-> 最后更新：2026-10-19 15:05
+> 最后更新：2026-10-22 10:50
 > 实际执行顺序已调整为 **① → ② → ④ → ③**（④ 是方法层，不依赖环境，却是 ③ 的效率前置）
 
 ## 总览
@@ -9,8 +9,8 @@
 |---|---|---|
 | ① 开发环境搭建 | ✅ 完成 | `.venv/` + 全套配置，9 项实测通过 |
 | ② Git 基础补课 | ✅ 完成 | **10 次规范提交**，全部已推送到 GitHub |
-| ④ Prompt 基础三原则 | 🟡 已开始实战（见 PROMPT-LAB） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md) |
-| ③ AI 工具初体验 | 🟡 LeetCode 8 题已完成 | [leetcode/](leetcode/README.md)，待做 Pandas ×2 |
+| ④ Prompt 基础三原则 | ✅ 完成（实验 3 可选未做） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md)（2 次实战） |
+| ③ AI 工具初体验 | ✅ **产出全部完成** | [leetcode/](leetcode/README.md) 8 题 + [pandas/](pandas/README.md) 2 个 notebook |
 | ＋ 额外产出 | ✅ 完成 | **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**（怎么和 AI 协作）+ **[WORKBUDDY-NOTES.md](WORKBUDDY-NOTES.md)**（工具本身怎么用）+ **[MY-WORKBUDDY-NOTES.md](MY-WORKBUDDY-NOTES.md)**（我自己的第一人称复盘） |
 | ▶ 下一阶段 | 🟢 计划已制定 | **[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)** —— 12 周项目驱动计划 + [进度看板](ai-plan/roadmap.html) |
 
@@ -50,9 +50,9 @@
 
 全部记录见 [PROMPT-LAB.md](PROMPT-LAB.md)。
 
-## 🟡 任务三：AI 工具初体验
+## ✅ 任务三：AI 工具初体验
 
-**LeetCode 部分已完成**（8 题：5 道简单题 + 平方和两题 + 1 道 SQL 题，全部通过），Pandas 部分未开始。
+**产出全部完成**：LeetCode 8 题 + pandas 2 个 notebook。剩下的是**验收动作**（见本节末尾）。
 
 - [x] `leetcode/` 四个题解文件（各含题目、思路、复杂度、边界用例与自测）
   - [x] Two Sum（哈希表）—— 最易错：`[3,3], target=6` 必须返回 `[0,1]`
@@ -79,9 +79,21 @@
   - [x] [subarrays_squares_walkthrough.md](leetcode/subarrays_squares_walkthrough.md)（平方和 II，含贡献转化推导）
 - [ ] **在 LeetCode 网站上实际提交通过一题**（拿到绿色「通过」）—— 代码已备好，就差你点提交
 - [ ] **验收（关键）**：不看代码，能用自己的话复述每道题的思路 + 说出最易错的边界用例
-- [ ] `pandas/` 建两个 notebook
-  - [ ] 读 CSV + `groupby` 聚合
-  - [ ] 缺失值处理 + `merge` 合并
+- [x] `pandas/` 建两个 notebook（2026-10-22 完成）
+  - [x] [01_sales_groupby.ipynb](pandas/01_sales_groupby.ipynb) —— 读 CSV + `groupby` 聚合
+        （含 BOM 编码坑、`to_datetime`、命名聚合、`reset_index`、多列分组、透视表）
+  - [x] [02_missing_and_merge.ipynb](pandas/02_missing_and_merge.ipynb) —— 缺失值处理 + `merge` 合并
+        （核心是 **merge 前查主键唯一性**：40 行订单 merge 后变 44 行，不去重金额会被算两遍）
+  - [x] [pandas/make_data.py](pandas/make_data.py) —— 固定种子生成示例数据，重跑 MD5 一致
+  - [x] 两个 notebook 已实际执行，**0 个错误单元格**（29 个代码格全部跑通）
+
+### 任务三还差什么（三件都是"只能自己做"的）
+
+| 待办 | 说明 |
+|---|---|
+| ⬜ 在 LeetCode 网站提交一次 | `submit/` 里 8 份代码都已备好，选最短的 SQL 题（3 行）最省事 |
+| ⬜ 复述思路 | 不看代码，能讲清每道题为什么这么做、最易错哪个用例 |
+| ⬜ 做完 pandas 两个 notebook 的「自己动手」 | 每个末尾有 2-3 个小任务，跑通不算完成，能答出来才算 |
 
 ---
 
@@ -110,10 +122,10 @@ python leetcode/verify_sql.py
 
 - 远程：`https://github.com/zzx130722/zzx1.git`（分支 `main`）
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
-- 本地共 **50 个提交**，远程 **21 个**（`3aa5082`）
-- ⚠️ **本地领先远程 29 个提交**（截至 2026-10-19），需要你自己推一次
+- 本地共 **56 个提交**，远程 **21 个**（`3aa5082`）
+- ⚠️ **本地领先远程 35 个提交**（截至 2026-10-22），需要你自己推一次
   （累积了 10-14 / 10-15 / 10-19 的改动，具体见 `git log --oneline`）
-- 仓库追踪文件 39 项（`.venv` 仍未追踪）
+- 仓库追踪文件 46 项（`.venv` 仍未追踪）
 - 备份标签仍在：`backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
 
 ## 推送备忘（重要）

@@ -166,7 +166,7 @@ dev-basics/
 ├── .gitignore              # 已包含 venv / 缓存 / 密钥 / Jupyter 检查点
 ├── hello.py                # 环境自检脚本
 ├── requirements.txt        # 依赖清单
-├── leetcode/               # 任务三：3 道简单题题解 + 一键自测
+├── leetcode/               # 任务三：8 道题题解 + 可直接粘贴的提交版 + 一键自测
 │   ├── two_sum.py              #   1. 两数之和（哈希表）
 │   ├── valid_parentheses.py    #  20. 有效的括号（栈）
 │   ├── merge_two_sorted_lists.py  # 21. 合并两个有序链表（双指针）
@@ -175,6 +175,12 @@ dev-basics/
 │   ├── LEETCODE-HOWTO.md       #   怎么把题解提交到 LeetCode 网站
 │   ├── two_sum_visual.html     #   两数之和可交互图解（浏览器打开）
 │   └── two_sum_walkthrough.md  #   两数之和的新手逐行详解
+├── pandas/                 # 任务三：2 个可运行的 notebook（读 CSV+groupby / 缺失值+merge）
+│   ├── 01_sales_groupby.ipynb     #   读 CSV、加派生列、groupby 聚合、透视表
+│   ├── 02_missing_and_merge.ipynb #   缺失值处理、merge 合并、行数膨胀排查
+│   ├── make_data.py        #   固定种子生成示例数据（重跑 MD5 一致）
+│   ├── README.md           #   怎么运行、三条铁律、验收标准
+│   └── data/               #   生成的 CSV（sales / orders / customers）
 ├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
 ├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
 ├── PROMPT-LAB.md           # 任务四：Prompt 实战记录（每次实验一条）
@@ -187,7 +193,8 @@ dev-basics/
 └── README.md               # 本文件
 ```
 
-任务三剩余产物：`pandas/`（2 个 notebook —— 读 CSV + groupby 聚合；缺失值处理 + merge 合并）。
+任务三的两个产物：`leetcode/`（8 道题，含 8 份可直接粘贴的提交版）和
+`pandas/`（2 个可运行的 notebook —— 读 CSV + groupby 聚合；缺失值处理 + merge 合并）。
 
 ### 相关文档
 
@@ -203,6 +210,7 @@ dev-basics/
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
 - **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——算法套路、易错边界用例与验收标准
 - **[leetcode/LEETCODE-HOWTO.md](leetcode/LEETCODE-HOWTO.md)**：怎么把题解跑到 LeetCode 网站上——格式差异、页面操作、报错对照表
+- **[pandas/README.md](pandas/README.md)**：任务三的 pandas 部分——2 个可运行 notebook 怎么打开、三条铁律（`dropna` 带 `subset`、金额别填 0、merge 前查主键唯一性）、验收标准
 - **[leetcode/submit/README.md](leetcode/submit/README.md)**：八道题的**可直接粘贴版**说明——含 SQL 题的特殊格式
 - **新手逐行讲解**（3 份）：[two_sum](leetcode/two_sum_walkthrough.md) /
   [search_insert](leetcode/search_insert_walkthrough.md) /
