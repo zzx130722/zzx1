@@ -10,6 +10,7 @@
 | `OSS-READING-LIST.md` | **读别人的现成项目**：去哪找、7 个入门项目的入口文件与真实规模、40 分钟走法 | 想换口味时从这里挑一个 |
 | `walkthrough_generate_epub.md` | 走查 37.5 万星标项目的 54 行 bash 构建脚本：**6 处问题 + 11 处修复 + 实测证据** | 先跑 `shell-lab/run_lab.sh` 看它撒谎，再读文档 |
 | `shell-lab/` | 上面那份的实验装置：原版 / 修复版 / 假 pandoc / 一键对照 | `bash shell-lab/run_lab.sh`（不用装 pandoc） |
+| `mapreduce-lab/` | **一段 20 行的 mrjob MapReduce**：补上两处 `...`、四个坑、三套实现交叉验算 | `python mapreduce-lab\hit_counts_local.py mapreduce-lab\sample.log`（纯标准库，不装 mrjob 也能跑） |
 
 ## 跑起来
 

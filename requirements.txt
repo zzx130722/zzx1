@@ -12,3 +12,8 @@ nbformat>=5.10
 
 # 单元测试：AI 编程进阶 04 用（pytest 9.x；测试本身不装也能读文档，但跑不了）
 pytest>=8.0
+
+# MapReduce 练习：01-read-code/mapreduce-lab 用（0.7.4 是最后一版，2021 年后停更）
+# ⚠️ 它在 Python 3.12+ 上 import 就挂（pipes / distutils 被删），
+#    靠 mapreduce-lab/compat_stubs/ 的三个桩才跑得起来；辅助脚本 hit_counts_local.py 不需要它
+mrjob==0.7.4
