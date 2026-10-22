@@ -98,9 +98,14 @@ def main() -> None:
     # utf-8-sig：带 BOM 的 UTF-8。Windows 上用 Excel 直接打开不会乱码。
     # 代价是读取时要指定 encoding="utf-8-sig"，否则第一个列名前面会多一个 \ufeff。
     # 这个细节在练习一里专门演示了一次。
-    sales.to_csv(DATA_DIR / "sales.csv", index=False, encoding="utf-8-sig")
-    orders.to_csv(DATA_DIR / "orders.csv", index=False, encoding="utf-8-sig")
-    customers.to_csv(DATA_DIR / "customers.csv", index=False, encoding="utf-8-sig")
+    #
+    # lineterminator="\n"：强制用 LF 换行。
+    # 不加的话 Windows 下会写成 CRLF，而本仓库的 .gitattributes 统一用 LF，
+    # 于是"clone 下来重跑"得到的文件 MD5 会和仓库里的不一样，可复现性就断了。
+    kw = dict(index=False, encoding="utf-8-sig", lineterminator="\n")
+    sales.to_csv(DATA_DIR / "sales.csv", **kw)
+    orders.to_csv(DATA_DIR / "orders.csv", **kw)
+    customers.to_csv(DATA_DIR / "customers.csv", **kw)
 
     print(f"已生成 {DATA_DIR}")
     for name, df in [("sales.csv", sales), ("orders.csv", orders), ("customers.csv", customers)]:
