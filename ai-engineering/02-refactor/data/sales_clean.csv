@@ -1,0 +1,11 @@
+﻿order_id,region,product,amount
+SO-1001,East,notebook,1200.00
+SO-1002,East,mouse,45.50
+SO-1003,East,keyboard,199.25
+SO-1004,East,monitor,880.00
+SO-1005,East,desk,320.75
+SO-1006,North,chair,540.00
+SO-1007,North,lamp,88.50
+SO-1008,North,stand,210.25
+SO-1009,North,pad,15.00
+SO-1010,North,cable,9.75

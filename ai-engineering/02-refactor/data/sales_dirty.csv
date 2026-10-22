@@ -1,0 +1,15 @@
+﻿order_id,region,product,amount
+DO-2001,East,notebook,1200.00
+DO-2002,East,mouse,45.50
+DO-2003,East,"monitor, 27in","1,234.50"
+DO-2004,East,keyboard,199.25
+DO-2005,South,desk,120.10
+DO-2006,South,chair,140.00
+DO-2007,South,lamp,
+DO-2008,South,stand,40.25
+DO-2009,North,server,1580.00
+DO-2010,North,cable,9.75
+DO-2010,North,cable,9.75
+DO-2011,West,phone,699.99
+DO-2012,West,case,0.10
+DO-2013,West,film,0.20
