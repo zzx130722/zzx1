@@ -4,3 +4,8 @@ pandas>=2.2.3
 
 # Notebook 内核：任务三的 Jupyter 练习靠它运行（VS Code 会调用）
 ipykernel>=6.29
+
+# Notebook 批量执行：只在命令行校验 notebook 能否跑通时用（改了 notebook 就跑一遍）
+# 不装也不影响在 VS Code 里手动逐格运行
+nbclient>=0.10
+nbformat>=5.10
