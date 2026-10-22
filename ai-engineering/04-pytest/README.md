@@ -11,8 +11,12 @@ pytest 9.1.1
 ```powershell
 cd $HOME\WorkBuddy\2026-10-13-16-35-32\dev-basics
 
-# 正式测试（12 passed, 5 xfailed）
+# 正式测试（34 passed, 5 xfailed）
 .venv\Scripts\python.exe -X utf8 -m pytest ai-engineering\04-pytest -q
+
+# 覆盖率（学习计划第 2 周要求 ≥60%，实测 67%）
+cd ai-engineering\04-pytest
+..\..\.venv\Scripts\python.exe -X utf8 measure_coverage.py
 
 # 待审查的 AI 测试（11 passed，其中 4 个是假绿）
 cd ai-engineering\04-pytest
@@ -27,9 +31,15 @@ cd ai-engineering\04-pytest
 | 文件 | 是什么 | 期望结果 |
 |---|---|---|
 | `test_report.py` | **正确示范**：对 `refactored/report.py` 的 8 个测试函数（12 条用例） | 全绿 |
+| `test_loader.py` | **正确示范 · 进阶**：`tmp_path` / `capsys` 两个新 fixture，覆盖 loader/models/errors/cli（22 条用例） | 全绿 |
 | `test_buggy_contract.py` | 把 03 的 **5 个 bug 用 `xfail(strict=True)` 固定** | 5 xfailed |
 | `ai_tests_to_review.py` | AI 生成的 8 个测试，**4 个是假绿** | 11 passed（别被数字骗了） |
-| `REVIEW-ANSWERS.md` | 上面那份的答案 + 人工把关清单 | 先自己读代码判断，再看 |
+| `measure_coverage.py` | 用标准库 `trace` 量行覆盖率（pytest-cov 装不上时的替代方案） | 合计 **67%**，达标线 60% |
+| `REVIEW-ANSWERS.md` | 假绿测试的答案 + 人工把关清单 | 先自己读代码判断，再看 |
+
+覆盖率明细（2026-10-22 实测）：`cli.py 93% · loader.py 77% · report.py 59% ·
+models.py 33% · errors.py 38%` —— **report 反而是示范文件里最低的**，因为它有两行
+错误分支没人走到。这正好说明：覆盖率是找缺口用的，60% 不是终点。
 
 `conftest.py` 只做一件事：把 `02-refactor/` 和 `03-debug-drill/` 加进 `sys.path`，
 这样测试里能直接 `from refactored.report import ...`。
