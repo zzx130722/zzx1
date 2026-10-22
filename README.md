@@ -181,6 +181,12 @@ dev-basics/
 │   ├── make_data.py        #   固定种子生成示例数据（重跑 MD5 一致）
 │   ├── README.md           #   怎么运行、三条铁律、验收标准
 │   └── data/               #   生成的 CSV（sales / orders / customers）
+├── ai-engineering/         # ⭐ AI 编程进阶：读代码 / 重构 / 调试 / 测试（4 条任务，递进关系）
+│   ├── README.md           #   总入口：四条任务怎么串、一键验证、每条的验收标准
+│   ├── 01-read-code/       #   102 行标准库走查 + 7 个可跑实验 + AI review 裁决表
+│   ├── 02-refactor/        #   面条代码 → 五层包 + 等价性校验（顺手找出 3 个真 bug）
+│   ├── 03-debug-drill/     #   5 关调试演练 + 答案册 + 「怎么问才问得到根因」
+│   └── 04-pytest/          #   12 条正式测试 + 4 个假绿测试的识别练习
 ├── GIT-WORKFLOW.md         # 任务二：Git 实操手册
 ├── PROMPT-GUIDE.md         # 任务四：Prompt 三原则 + 可复用模板
 ├── PROMPT-LAB.md           # 任务四：Prompt 实战记录（每次实验一条）
@@ -207,6 +213,11 @@ dev-basics/
 - **[MY-WORKBUDDY-NOTES.md](MY-WORKBUDDY-NOTES.md)**：⭐⭐ **我自己的使用复盘（第一人称）**——四天的真实轨迹、六个「我以为是这样」的坑、改掉的三个习惯、**以及三件我到现在还没做到的事**（没在 LeetCode 提交过、pandas 没动、26 个提交没推）
 - **[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)**：⭐ **下一阶段 AI 学习计划（12 周）**——项目驱动，四个阶段三个作品：CLI 助手 → RAG 知识库 → 工具型 Agent；含每周任务、验收标准、时间缩放方案
 - **[ai-plan/roadmap.html](ai-plan/roadmap.html)**：12 周进度看板——可勾选、自动算完成率、勾选状态存在浏览器本地
+- **[ai-engineering/README.md](ai-engineering/README.md)**：⭐ **AI 编程进阶（4 条任务）**——读懂开源代码 → 重构自己的代码 → 造 bug 练定位 → 用 pytest 钉住结论；四条递进，每节都有可跑脚本和验收标准
+  - [01 读代码](ai-engineering/01-read-code/README.md)：`textwrap._wrap_chunks` 102 行逐段走查 + 7 个「问→猜→验」实验 + review 意见的 7 条裁决
+  - [02 重构](ai-engineering/02-refactor/REFACTOR-NOTES.md)：先立安全网再动手，`check_equivalence.py` 保证干净数据逐字节不变
+  - [03 调试](ai-engineering/03-debug-drill/ANSWER-KEY.md)：5 个「只跑一次就正确」的 bug，附根因与提问话术对照
+  - [04 测试](ai-engineering/04-pytest/REVIEW-ANSWERS.md)：实测「函数改坏了还有 7 个测试绿着」，4 个假绿的识别方法
 - **[PROGRESS.md](PROGRESS.md)**：学习进度看板——四个任务的完成状态、逐项勾选清单与环境备忘
 - **[leetcode/README.md](leetcode/README.md)**：任务三题解说明——算法套路、易错边界用例与验收标准
 - **[leetcode/LEETCODE-HOWTO.md](leetcode/LEETCODE-HOWTO.md)**：怎么把题解跑到 LeetCode 网站上——格式差异、页面操作、报错对照表

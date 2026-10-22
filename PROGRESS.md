@@ -1,6 +1,6 @@
 # 学习进度
 
-> 最后更新：2026-10-22 10:50
+> 最后更新：2026-10-22 12:00
 > 实际执行顺序已调整为 **① → ② → ④ → ③**（④ 是方法层，不依赖环境，却是 ③ 的效率前置）
 
 ## 总览
@@ -12,6 +12,7 @@
 | ④ Prompt 基础三原则 | ✅ 完成（实验 3 可选未做） | [PROMPT-GUIDE.md](PROMPT-GUIDE.md) + [PROMPT-LAB.md](PROMPT-LAB.md)（2 次实战） |
 | ③ AI 工具初体验 | ✅ **产出全部完成** | [leetcode/](leetcode/README.md) 8 题 + [pandas/](pandas/README.md) 2 个 notebook |
 | ＋ 额外产出 | ✅ 完成 | **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**（怎么和 AI 协作）+ **[WORKBUDDY-NOTES.md](WORKBUDDY-NOTES.md)**（工具本身怎么用）+ **[MY-WORKBUDDY-NOTES.md](MY-WORKBUDDY-NOTES.md)**（我自己的第一人称复盘） |
+| ▶ AI 编程进阶（4 条） | ✅ **完成，待自测** | **[ai-engineering/](ai-engineering/README.md)** 读代码 / 重构 / 调试 / pytest，四节都有可跑脚本 |
 | ▶ 下一阶段 | 🟢 计划已制定 | **[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)** —— 12 周项目驱动计划 + [进度看板](ai-plan/roadmap.html) |
 
 ---
@@ -97,6 +98,38 @@
 
 ---
 
+## ▶ AI 编程进阶（4 条，10-22 新增）
+
+> 入口：[ai-engineering/README.md](ai-engineering/README.md)
+> 主线：**读懂别人的代码 → 改造自己的代码 → 出错时能定位 → 用测试钉住结论**
+
+| 任务 | 状态 | 产出 | 一键验证 |
+|---|---|---|---|
+| ⑤ 读开源代码 + AI review | ✅ 完成 | `textwrap._wrap_chunks` 102 行逐段走查、7 个「问→猜→验」实验、7 条 review 意见裁决（2 听 / 4 错 / 1 看上下文） | `python -X utf8 ai-engineering/01-read-code/experiments.py` |
+| ⑥ 重构简历项目代码 | ✅ 完成 | 70 行面条脚本 → 5 层包（models/errors/loader/report/cli）+ 类型注解 + `Decimal` + 自定义异常；**顺手找出 3 个真 bug** | `python -X utf8 check_equivalence.py`（在 02-refactor 目录） |
+| ⑦ 造 bug 练定位 | ✅ 完成 | 5 关演练：可变默认参数 / 返回内部引用 / 整除丢零头 / try 范围过大 / 字符串排序 | `python -X utf8 drill.py`（03-debug-drill 目录） |
+| ⑧ pytest + 人工把关 | ✅ 完成 | 12 条正式测试 + 5 条 `xfail(strict=True)` 契约测试 + 8 个 AI 测试里识别 4 个假绿 | `pytest ai-engineering/04-pytest -q` → 12 passed, 5 xfailed |
+
+### 三条可复用的结论
+
+1. **重构的第一步不是拆函数，是立安全网。** `check_equivalence.py` 先跑通"干净数据逐字节一致"，
+   之后每改一处都跑它；干净数据都过不了的改动，没资格谈"重构"。
+2. **数据静默缺失比程序崩溃危险。** 原版 `except: pass` 让 4 行数据只读到 1 条却一声不吭；
+   正确做法是跳过坏行 + 打警告，而不是把错误变成 0。
+3. **能说清"改坏什么会让它红"的测试才是测试。** 实测把 `format_amount` 改成 `return "WRONG"` 后，
+   8 个 AI 测试里仍有 7 个绿着（`4 failed, 7 passed`）。
+
+### 还差什么（只能自己做）
+
+| 待办 | 说明 |
+|---|---|
+| ⬜ 03 的 5 关先写根因再看答案 | 跑 `drill.py` **不要**加 `--answers`，纸上写完再对 |
+| ⬜ 04 的 4 个假绿自己指出来 | 读 `ai_tests_to_review.py`，判断完再看 `REVIEW-ANSWERS.md` |
+| ⬜ 01 的作业：自己读 `csv.DictReader` | 三个问题在 `walkthrough_textwrap.md` 末尾 |
+| ⬜ 02 若换成真实简历项目 | 把 `legacy_sales_report.py` 换成你的实训代码，其余流程原样套用 |
+
+---
+
 ## 环境备忘
 
 ```bash
@@ -124,7 +157,7 @@ python leetcode/verify_sql.py
 - ✅ 提交身份已统一为 `zzx130722 <341903242+zzx130722@users.noreply.github.com>`（全局配置同步更新）
 - ✅ **10-22 11:00 核验：远程 `main` HEAD = `9376535`，与当时本地完全一致**
   （10-15 起累积的 35 个待推提交已全部推完，GitHub API 逐条核验通过）
-- 本次进度更新又在本地多了 1 个提交，顺手推一次即可同步
+- 之后本地又累积了 AI 编程进阶四节的产出，用系统终端推一次即可同步
 - 仓库追踪文件 46 项（`.venv` 仍未追踪）
 - 备份标签仍在：`backup-before-rewrite`（重写前的 `5288f31`），确认无误后可删除
 

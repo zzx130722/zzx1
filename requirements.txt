@@ -9,3 +9,6 @@ ipykernel>=6.29
 # 不装也不影响在 VS Code 里手动逐格运行
 nbclient>=0.10
 nbformat>=5.10
+
+# 单元测试：AI 编程进阶 04 用（pytest 9.x；测试本身不装也能读文档，但跑不了）
+pytest>=8.0
