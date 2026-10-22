@@ -8,12 +8,12 @@
 
 ## 一、先能找到：4 个入口
 
-| 入口 | 地址 | 什么时候用 |
+| 入口 | 直接点开 | 什么时候用 |
 |---|---|---|
-| 趋势榜 | `github.com/trending/python?since=weekly` | 不知道看什么，看本周冒头的 |
-| 话题页 | `github.com/topics/cli`、`/topics/pandas` | 想按领域找 |
-| 搜索 | 见下面三条 | 有明确条件时最准 |
-| Awesome 列表 | `github.com/vinta/awesome-python` | 想按「做哪类东西」找 |
+| 趋势榜 | <https://github.com/trending/python?since=weekly> | 不知道看什么，看本周冒头的 |
+| 话题页 | <https://github.com/topics/cli> / <https://github.com/topics/pandas> | 想按领域找 |
+| 搜索 | <https://github.com/search?q=language%3Apython+stars%3A%3E5000&type=repositories> | 有明确条件时最准 |
+| Awesome 列表 | <https://github.com/vinta/awesome-python> | 想按「做哪类东西」找 |
 
 搜索框里能直接写限定符，三条常用的：
 
@@ -27,26 +27,71 @@ language:python size:<2000 stars:>500                 # 代码量小的（size �
 
 ---
 
-## 二、读得动的 7 个（规模实测）
+## 二、读得动的 7 个（规模实测 + 可直接点开的网址）
 
 按「入口文件大小」排序——**入口越小越好读**，因为它决定了你第一眼要看多少东西。
 
-| 项目 | 星标 | 入口文件 | 读它能学到什么 |
-|---|---|---|---|
-| `theskumar/python-dotenv` | 8.9k | `src/dotenv/parser.py` **5.7 KB** | 手写一个小解析器、配置加载、CLI 三件套 |
-| `psf/requests` | 54.5k | `src/requests/api.py` **7.0 KB** | 好用的 API 长什么样（7 个动词函数一行一个） |
-| `tqdm/tqdm` | 31.4k | `tqdm/std.py` **56.7 KB** | 进度条：怎么在迭代中偷偷刷新输出 |
-| `tiangolo/typer` | 20.2k | `typer/main.py` **67.5 KB** | 用类型注解 + 装饰器自动造 CLI |
-| `openai/openai-python` | 31.9k | `src/openai/_client.py` **95.6 KB** | 官方 SDK 怎么封装 HTTP、重试、流式响应 |
-| `pallets/click` | 17.8k | `src/click/core.py` **153.3 KB** | 命令行框架的核心抽象（Context/Command） |
-| `bottlepy/bottle` | 8.8k | `bottle.py` **171.2 KB**（单文件） | 一个 Web 框架的最小完整实现 |
+> ⚠️ **网址里的分支名不能想当然。** 2026-10-22 逐个核验：这 7 个里有 2 个的默认分支仍是
+> `master`（`tqdm`、`tiangolo/typer`），其余是 `main`。把 `master` 写成 `main` 就是 404，
+> 而且报错页面长得像「文件不存在」，很容易误以为是自己记错了路径。
+
+### 第一梯队：一次坐下就能读完（建议从这里开始）
+
+**① `python-dotenv` — 5.7 KB，191 行**
+
+- 项目首页：<https://github.com/theskumar/python-dotenv>
+- 入口文件：<https://github.com/theskumar/python-dotenv/blob/main/src/dotenv/parser.py>
+- 测试怎么调：<https://github.com/theskumar/python-dotenv/blob/main/tests/test_parser.py>
+- 学：手写一个小解析器、配置加载、CLI 三件套
+
+**② `requests` — 7.0 KB，一个函数 3 行**
+
+- 项目首页：<https://github.com/psf/requests>
+- 入口文件：<https://github.com/psf/requests/blob/main/src/requests/api.py>
+- 学：好用的 API 长什么样（`get`/`post`/`put` 七个动词，每个都只是一行 `return request(...)`）
+
+### 第二梯队：需要分几次读
+
+**③ `tqdm` — 56.7 KB**
+
+- 项目首页：<https://github.com/tqdm/tqdm>
+- 入口文件：<https://github.com/tqdm/tqdm/blob/master/tqdm/std.py> ← **`master`**
+- 学：进度条怎么在迭代中偷偷刷新输出、怎么算速度
+
+**④ `typer` — 67.5 KB**
+
+- 项目首页：<https://github.com/tiangolo/typer>
+- 入口文件：<https://github.com/tiangolo/typer/blob/master/typer/main.py> ← **`master`**
+- 学：用类型注解 + 装饰器自动造 CLI
+
+**⑤ `openai-python` — 95.6 KB**
+
+- 项目首页：<https://github.com/openai/openai-python>
+- 入口文件：<https://github.com/openai/openai-python/blob/main/src/openai/_client.py>
+- 学：官方 SDK 怎么封装 HTTP、重试、流式响应
+
+### 第三梯队：当参考书查，别通读
+
+**⑥ `click` — 153.3 KB**
+
+- 项目首页：<https://github.com/pallets/click>
+- 入口文件：<https://github.com/pallets/click/blob/main/src/click/core.py>
+- 学：命令行框架的核心抽象（`Context` / `Command`），是 Python CLI 界的教科书
+
+**⑦ `bottle` — 171.2 KB，整个框架一个文件**
+
+- 项目首页：<https://github.com/bottlepy/bottle>
+- 入口文件：<https://github.com/bottlepy/bottle/blob/main/bottle.py>
+- 学：一个 Web 框架的最小完整实现，约 4000 行。听着吓人，但**不用在几十个目录间跳**，
+  是「一个项目从零长起来」的最佳样本。当参考书，按需搜索关键字。
 
 补充两个事实，避免你被教程带偏：
 
 - `requests` 已经迁到 `src/requests/` 目录，网上大量教程写的 `requests/api.py` 是**旧路径，会 404**。
   `sessions.py` 33 KB、`models.py` 40 KB，别从这两个开始。
-- `bottle` 整个框架是**一个文件**，171 KB 约 4000 行。听起来吓人，但它是「一个项目从零长起来」的最佳样本——
-  不用在几十个目录间跳。
+- 「把 `github.com/…/blob/…` 里的 `github.com` 换成 `github.dev`」= 网页版 VS Code，
+  可以全局搜索、看定义跳转，**读代码时比网页阅读器强太多**。
+  例：<https://github.dev/theskumar/python-dotenv>
 
 ---
 
@@ -70,15 +115,25 @@ language:python size:<2000 stars:>500                 # 代码量小的（size �
 
 ---
 
-## 四、一个 40 分钟的完整走法（以 python-dotenv 为例）
+## 四、一个 40 分钟的完整走法（以 python-dotenv 为例，含网址）
 
 ```text
-0-5 分    打开 github.com/theskumar/python-dotenv，只看 README 前 20 行：它解决什么问题
-5-10 分   按 t，输入 test_parser，先看测试里怎么调用
-10-25 分  按 .，打开网页版 VS Code，读 src/dotenv/parser.py（5.7 KB，一次能读完）
+0-5 分    https://github.com/theskumar/python-dotenv
+          只看 README 前 20 行：它解决什么问题
+
+5-10 分   https://github.dev/theskumar/python-dotenv
+          按 Ctrl+P 搜 test_parser.py，先看测试里怎么调用
+
+10-25 分  同窗口继续读 src/dotenv/parser.py（5.7 KB，一次能读完）
+
 25-35 分  读 src/dotenv/main.py 的前 100 行，找「谁调用了 parser」
-35-40 分  回到 GitHub，点文件里的「追溯」，看 parser.py 最近被改过什么、为什么改
+
+35-40 分  回 https://github.com/theskumar/python-dotenv/blob/main/src/dotenv/parser.py
+          点右上「Blame / 追溯」，看这文件最近为什么被改
 ```
+
+**第一步就能偷懒的方式**：把第二节表格里任意一个网址的 `github.com` 换成 `github.dev`，
+直接进网页版 VS Code，不用一层层点目录。
 
 第四步的「追溯」经常被忽略，但它是理解**设计意图**最快的入口——
 代码告诉你「现在是什么样」，提交历史告诉你「为什么要变成这样」。
