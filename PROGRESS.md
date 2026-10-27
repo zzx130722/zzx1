@@ -13,6 +13,7 @@
 | ③ AI 工具初体验 | ✅ **产出全部完成** | [leetcode/](leetcode/README.md) 8 题 + [pandas/](pandas/README.md) 2 个 notebook |
 | ＋ 额外产出 | ✅ 完成 | **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**（怎么和 AI 协作）+ **[WORKBUDDY-NOTES.md](WORKBUDDY-NOTES.md)**（工具本身怎么用）+ **[MY-WORKBUDDY-NOTES.md](MY-WORKBUDDY-NOTES.md)**（我自己的第一人称复盘） |
 | ▶ AI 编程进阶（4 条） | ✅ **完成，待自测** | **[ai-engineering/](ai-engineering/README.md)** 读代码 / 重构 / 调试 / pytest，四节都有可跑脚本 |
+| ▶ 里程碑 1（3 道小题） | 🟡 **材料就位，代码待自己写** | **[ai-engineering/05-milestone/](ai-engineering/05-milestone/README.md)** 清洗 / 汇总 / 日志统计 + 17 项自动判分 |
 | ▶ 下一阶段 | 🟢 计划已制定 | **[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)** —— 12 周项目驱动计划 + [进度看板](ai-plan/roadmap.html) |
 
 ---
@@ -127,6 +128,30 @@
 | ⬜ 04 的 4 个假绿自己指出来 | 读 `ai_tests_to_review.py`，判断完再看 `REVIEW-ANSWERS.md` |
 | ⬜ 01 的作业：自己读 `csv.DictReader` | 三个问题在 `walkthrough_textwrap.md` 末尾 |
 | ⬜ 02 若换成真实简历项目 | 把 `legacy_sales_report.py` 换成你的实训代码，其余流程原样套用 |
+
+---
+
+## ▶ 里程碑 1：三道小题，自己写（10-27 新增）
+
+> 入口：[ai-engineering/05-milestone/README.md](ai-engineering/05-milestone/README.md)
+> 对应学习计划第 2 周右列的最后一格：**给 3 个小任务，全程 AI 辅助独立完成，能逐行讲清逻辑**
+
+| # | 题 | 输入 → 输出 | 考什么 |
+|---|---|---|---|
+| 1 | 脏 CSV 清洗 | `data/raw_orders.csv` → `out/t1_clean.csv` | 去重规则、金额去 `$`/千分位、两种日期格式、region 归一化 |
+| 2 | 分组汇总 | 第 1 题的输出 → `out/t2_report.txt` | 分组、字母序、`TOTAL` 行的均值分母 |
+| 3 | 日志按月统计 | `data/hits.log` → `out/t3_hits.tsv` | 正则取字段、月份映射、坏行计数 |
+
+判分器 `grade.py` 逐项 PASS/FAIL（17 项），**只判对错，不给改法**：
+
+```powershell
+.venv\Scripts\python.exe -X utf8 ai-engineering\05-milestone\grade.py
+```
+
+- 判分器本身验过：正确产物 17/17 绿；把「保留旧订单 / region 没归一化 / North 总额少 100 /
+  删掉 `#dropped` 行」四处改坏，四处都被抓到并指出第几条不一样
+- ⚠️ `grade.py` 末尾 `EXPECTED_*` 就是答案，建议先自己写
+- 状态：⬜ **代码待自己写**（材料已就位），三道都过之后还要过「六问自检」才算闭环
 
 ---
 

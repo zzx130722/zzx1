@@ -1,0 +1,12 @@
+203.0.113.7 - - [03/Jan/2026:10:12:01 +0000] "GET /index.html HTTP/1.1" 200 1043
+203.0.113.7 - - [03/Jan/2026:10:12:05 +0000] "GET /pricing HTTP/1.1" 200 2210
+198.51.100.23 - - [04/Jan/2026:23:59:59 +0000] "GET /index.html HTTP/1.1" 200 1043
+198.51.100.23 - - [05/Jan/2026:00:00:01 +0000] "GET /blog/mapreduce HTTP/1.1" 200 8821
+192.0.2.55 - - [17/Feb/2026:08:30:00 +0000] "GET /index.html HTTP/1.1" 304 0
+192.0.2.55 - - [17/Feb/2026:08:30:02 +0000] "POST /api/hits HTTP/1.1" 201 12
+192.0.2.55 - - [18/Feb/2026:09:00:00 +0000] "GET /blog/mapreduce HTTP/1.1" 200 8821
+this line has no url and no timestamp at all
+203.0.113.7 - - [not-a-timestamp] "GET /index.html HTTP/1.1" 200 1043
+198.51.100.9 - - [02/Mar/2026:11:00:00 +0000] "GET /index.html HTTP/1.1" 200 1043
+198.51.100.9 - - [02/Mar/2026:11:00:03 +0000] "GET /pricing HTTP/1.1" 200 2210
+198.51.100.9 - - [02/Mar/2026:11:00:09 +0000] "GET /index.html HTTP/1.1" 200 1043

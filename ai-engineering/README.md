@@ -15,6 +15,7 @@
 | [`02-refactor/`](02-refactor/REFACTOR-NOTES.md) | 重构简历项目代码 | 70 行面条代码 → 5 层包 + 等价性校验 + 3 个真 bug | `check_equivalence.py`、`REFACTOR-NOTES.md` |
 | [`03-debug-drill/`](03-debug-drill/ANSWER-KEY.md) | 故意造 bug，用 AI 定位 | 5 关演练 + 答案册 + 提问话术对照 | `drill.py`、`ANSWER-KEY.md` |
 | [`04-pytest/`](04-pytest/README.md) | pytest 入门 + 人工把关 | 12 条正式测试 + 4 个假绿测试的识别 | `test_report.py`、`REVIEW-ANSWERS.md` |
+| [`05-milestone/`](05-milestone/README.md) | **里程碑 1：三道小题自己写** | 脏 CSV 清洗 / 分组汇总 / 日志统计 + 自动判分器（`grade.py`，逐项 PASS-FAIL） | `grade.py`、`data/raw_orders.csv` |
 
 ## 一键验证（四条全跑一遍）
 
@@ -36,6 +37,9 @@ cd ..\..
 
 # 04 测试：12 passed, 5 xfailed
 .venv\Scripts\python.exe -X utf8 -m pytest ai-engineering\04-pytest -q
+
+# 05 里程碑：判分（三题都写完才可能全绿；先跑会看到三个「没找到产物」）
+.venv\Scripts\python.exe -X utf8 ai-engineering\05-milestone\grade.py
 ```
 
 ## 每条任务的验收标准
