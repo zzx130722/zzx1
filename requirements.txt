@@ -17,3 +17,7 @@ pytest>=8.0
 # ⚠️ 它在 Python 3.12+ 上 import 就挂（pipes / distutils 被删），
 #    靠 mapreduce-lab/compat_stubs/ 的三个桩才跑得起来；辅助脚本 hit_counts_local.py 不需要它
 mrjob==0.7.4
+
+# 第 2 周 AI API 练习：week2-llm/ 调大模型用（requests 是唯一新依赖，
+# .env 解析是手写的迷你版，没引 python-dotenv）
+requests>=2.31

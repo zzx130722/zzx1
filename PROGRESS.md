@@ -14,7 +14,7 @@
 | ＋ 额外产出 | ✅ 完成 | **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**（怎么和 AI 协作）+ **[WORKBUDDY-NOTES.md](WORKBUDDY-NOTES.md)**（工具本身怎么用）+ **[MY-WORKBUDDY-NOTES.md](MY-WORKBUDDY-NOTES.md)**（我自己的第一人称复盘） |
 | ▶ AI 编程进阶（4 条） | ✅ **完成，待自测** | **[ai-engineering/](ai-engineering/README.md)** 读代码 / 重构 / 调试 / pytest，四节都有可跑脚本 |
 | ▶ 里程碑 1（3 道小题） | 🟡 **材料就位，代码待自己写** | **[ai-engineering/05-milestone/](ai-engineering/05-milestone/README.md)** 清洗 / 汇总 / 日志统计 + 17 项自动判分 |
-| ▶ 下一阶段 | 🟢 计划已制定 | **[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)** —— 12 周项目驱动计划 + [进度看板](ai-plan/roadmap.html) |
+| ▶ 下一阶段 | 🟡 **第 2 周代码备好，等 key** | **[week2-llm/](week2-llm/README.md)** 6 天任务全做成文件：curl/单次调用/封装/多轮 CLI，差注册 DeepSeek 填 `.env` | 计划全文：**[ai-plan/AI-LEARNING-PLAN.md](ai-plan/AI-LEARNING-PLAN.md)** + [进度看板](ai-plan/roadmap.html) |
 
 ---
 
