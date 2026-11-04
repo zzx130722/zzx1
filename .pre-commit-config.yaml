@@ -1,0 +1,30 @@
+# pre-commit 配置：放在 git 仓库根目录（pre-commit 只认仓库根的这份文件）
+# 每个条目 = 一个钩子：从哪拉代码(repo) + 用哪个版本(rev) + 跑哪个工具(hooks)
+# rev 必须写死真实存在的 tag——不锁版本的话，某天钩子行为变了，提交会莫名挂掉
+repos:
+  # ruff：linter 只查不改格式（格式交给 black，两者各管一摊不打架）
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.3
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  # black：统一格式。别人的仓库会用 hash 锁定（官方推荐），
+  # 这里用 tag 是为了你以后能看懂、能自己升级
+  - repo: https://github.com/psf/black
+    rev: 26.10.1
+    hooks:
+      - id: black
+
+  # 基础卫生：文件末尾缺换行、行尾空白——最小代价防掉两类无意义 diff
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+# 作用域：只检查 week3-package/（本周新包）。
+# 旧目录（week2-llm、pandas、ai-engineering）写于工具链建立之前，
+# 有历史风格的 lint 报错——等以后收编时再逐个修，不在本周范围内。
+# 以后想放宽作用域：删掉下面这行 files 即可
+files: ^week3-package/
