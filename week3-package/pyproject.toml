@@ -1,0 +1,49 @@
+[build-system]
+# 构建后端：setuptools 是 Python 官方默认，src 布局下用 packages.find 自动发现
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# 包名：pip install devbasics 时的名字；目录叫 week3-package 只是仓库里的位置
+name = "devbasics"
+version = "0.1.0"
+description = "阶段一练习的规范化 Python 包：LeetCode 题解 + LLM 客户端"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    # llm.client 调模型 API 用；标准库没有 requests
+    "requests>=2.32",
+]
+
+# pip install -e ".[dev]" 会把 dev 组的工具一起装上
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "black>=25.1",
+    "ruff>=0.14",
+    "pre-commit>=4.0",
+]
+
+[tool.setuptools.packages.find]
+# src 布局的关键一行：告诉 setuptools 去 src/ 下找包
+where = ["src"]
+
+# ------------------------------------------------------------------
+# 质量工具链配置：全部收在 pyproject.toml，不另建 setup.cfg / .toml
+# （一个文件管一个项目，是 PEP 518 之后的推荐做法）
+# ------------------------------------------------------------------
+
+[tool.black]
+# 88 是 black 默认行宽，别改成 79/120：改了就失去 black「零配置」的意义
+line-length = 88
+target-version = ["py313"]
+
+[tool.ruff]
+# ruff 要知道 import 从哪来，isort 规则(I)才能正确分组 first-party
+src = ["src", "tests"]
+line-length = 88
+
+[tool.ruff.lint]
+# E/W: pycodestyle 风格检查  F: pyflakes(未用变量/未定义名)
+# I: import 排序        B: bugbear(常见 bug 模式)  UP: 过时写法升级
+select = ["E", "F", "W", "I", "B", "UP"]
