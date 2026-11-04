@@ -14,6 +14,7 @@
 | ＋ 额外产出 | ✅ 完成 | **[AI-USAGE-NOTES.md](AI-USAGE-NOTES.md)**（怎么和 AI 协作）+ **[WORKBUDDY-NOTES.md](WORKBUDDY-NOTES.md)**（工具本身怎么用）+ **[MY-WORKBUDDY-NOTES.md](MY-WORKBUDDY-NOTES.md)**（我自己的第一人称复盘） |
 | ▶ AI 编程进阶（4 条） | ✅ **完成，待自测** | **[ai-engineering/](ai-engineering/README.md)** 读代码 / 重构 / 调试 / pytest，四节都有可跑脚本 |
 | ▶ 里程碑 1（3 道小题） | 🟡 **材料就位，代码待自己写** | **[ai-engineering/05-milestone/](ai-engineering/05-milestone/README.md)** 清洗 / 汇总 / 日志统计 + 17 项自动判分 |
+| ▶ 第 3 周 · Python 工程化规范 | ✅ **完成（2026-11-04）** | **[week3-package/](week3-package/README.md)** 规范化包 `devbasics`：src/tests/docs 分层 + pyproject.toml + black/ruff/pre-commit，40 项测试全过；讲解见 [docs/EXPLAIN.md](week3-package/docs/EXPLAIN.md) |
 | ▶ 参考资料 | ⚪ 仅供参考，非任务来源 | `ai-plan/`（12 周计划+看板，任务一律以用户自己的清单为准）· `week2-llm/`（API 练习成品，已跑通智谱 glm-4-flash，2026-10-27） |
 
 ---
