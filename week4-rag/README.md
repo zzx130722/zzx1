@@ -29,7 +29,10 @@
 .venv\Scripts\python.exe -X utf8 week4-rag\langchain_demo.py "一线城市住宿每晚上限是多少？"
 ```
 
-## 换成你自己的团队文档
+## 可选：换成自己的团队文档（本周不必做）
+
+> 2026-11-18 已确认：本周就沿用示例语料 `data/team-handbook.md` 交付，不替换真实文档。
+> 下面三步只在以后真要换语料时才需要，跳过不影响本周验收。
 
 1. 用真实内容替换 `data/team-handbook.md`，**保留 `## 小节标题` 这种二级标题**——程序靠它切分，标题还会作为答案来源。
 2. 跑一次 `ask.py --rebuild` 重建索引。
@@ -59,11 +62,11 @@
 | `langchain_demo.py` | 同链路的 LangChain 版：框架接管切分 / Embeddings / ChatModel |
 | `ask.py` | 命令行入口，打印命中片段、相似度和本次 token |
 | `verify.py` | 验收：3 个资料内问题 + 2 个资料外问题，全绿才算过 |
-| `data/team-handbook.md` | 示例语料（编的，不是真实制度） |
+| `data/team-handbook.md` | 示例语料（编的，非真实制度；已确认本周沿用） |
 | `data/index.json` | 运行时生成的向量索引，**不提交**，由 `--rebuild` 产生 |
 | `docs/ARCHITECTURE.md` | 交付物：一页架构说明 |
 
-## 自检三问（合上代码能答出来才算过）
+## 自检三问（本周唯一剩余项，合上代码能答出来才算过）
 
 1. 为什么索引要落成 `index.json`，而不是每次提问都把文档重新向量化一遍？
 2. `MIN_SCORE = 0.55` 是怎么定出来的？换一份文档还能直接沿用吗？

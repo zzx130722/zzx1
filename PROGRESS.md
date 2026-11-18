@@ -15,7 +15,7 @@
 | ▶ AI 编程进阶（4 条） | ✅ **完成，待自测** | **[ai-engineering/](ai-engineering/README.md)** 读代码 / 重构 / 调试 / pytest，四节都有可跑脚本 |
 | ▶ 里程碑 1（3 道小题） | 🟡 **材料就位，代码待自己写** | **[ai-engineering/05-milestone/](ai-engineering/05-milestone/README.md)** 清洗 / 汇总 / 日志统计 + 17 项自动判分 |
 | ▶ 第 3 周 · Python 工程化规范 | ✅ **完成（2026-11-04）** | **[week3-package/](week3-package/README.md)** 规范化包 `devbasics`：src/tests/docs 分层 + pyproject.toml + black/ruff/pre-commit，40 项测试全过；讲解见 [docs/EXPLAIN.md](week3-package/docs/EXPLAIN.md) |
-| ▶ 第 4 周 · LLM 应用开发入门 | ✅ **Demo 跑通（2026-11-18）** | **[week4-rag/](week4-rag/README.md)** 智谱 `glm-4-flash` + `embedding-3` 文档问答，核心版 + LangChain 版，`verify.py` 5/5 通过；交付物「一页架构说明」见 [docs/ARCHITECTURE.md](week4-rag/docs/ARCHITECTURE.md) |
+| ▶ 第 4 周 · LLM 应用开发入门 | ✅ **完成（2026-11-18）** | **[week4-rag/](week4-rag/README.md)** 智谱 `glm-4-flash` + `embedding-3` 文档问答，核心版 + LangChain 版，`verify.py` 5/5 通过；交付物「一页架构说明」见 [docs/ARCHITECTURE.md](week4-rag/docs/ARCHITECTURE.md) |
 | ▶ 参考资料 | ⚪ 仅供参考，非任务来源 | `ai-plan/`（12 周计划+看板，任务一律以用户自己的清单为准）· `week2-llm/`（API 练习成品，已跑通智谱 glm-4-flash，2026-10-27） |
 
 ---
@@ -218,6 +218,9 @@ git push
 **实测数据**（不是估算）：chat 与 embedding 均 HTTP 200；7 个片段、256 维；单次问答 292 输入 / 24 输出 token；
 相似度资料内 0.634~0.697、资料外 0.485~0.489，阈值据此定为 0.55；`verify.py` **5/5 通过**。
 
-**还需用户自己做**：把 `data/team-handbook.md` 换成真实团队文档，重跑 `--rebuild`，
-按 `verify.py` 打印的分数重新标定 `MIN_SCORE`，并用真实问题改写验收用例。
-另：概念部分要求「能复述思路」，自检三问放在 week4-rag/README.md 末尾。
+**语料口径（2026-11-18 确认）**：沿用 `data/team-handbook.md` 这份示例手册交付，**不替换真实团队文档**。
+因此 `MIN_SCORE = 0.55`、`verify.py` 里的 5 个问题、以及上面这组实测数据都保持有效，
+无需重建索引、无需重标定阈值、无需改写验收用例。若将来要换语料，再走 README「可选：换成自己的团队文档」那一节。
+
+**本周唯一剩余项**：概念部分要求「能复述思路」——合上代码答出
+[week4-rag/README.md](week4-rag/README.md) 末尾的自检三问。这是学习验收，不影响两个交付物的完整性。
