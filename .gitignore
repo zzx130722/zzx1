@@ -35,3 +35,6 @@ htmlcov/
 # 操作系统
 .DS_Store
 Thumbs.db
+
+# 第 4 周 RAG：运行时生成的向量索引（语料换过就要 --rebuild，不提交）
+week4-rag/data/index.json

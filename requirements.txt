@@ -21,3 +21,9 @@ mrjob==0.7.4
 # 第 2 周 AI API 练习：week2-llm/ 调大模型用（requests 是唯一新依赖，
 # .env 解析是手写的迷你版，没引 python-dotenv）
 requests>=2.31
+
+# 第 4 周 RAG 文档问答：week4-rag/
+# rag.py 只用 numpy 算余弦相似度；langchain_demo.py 是任务卡要求的框架版
+numpy>=2.5
+langchain-openai>=1.8
+langchain-text-splitters>=1.1
