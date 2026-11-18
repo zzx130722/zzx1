@@ -1,6 +1,6 @@
 # 学习进度
 
-> 最后更新：2026-10-22 12:00
+> 最后更新：2026-11-18
 > 实际执行顺序已调整为 **① → ② → ④ → ③**（④ 是方法层，不依赖环境，却是 ③ 的效率前置）
 
 ## 总览
@@ -15,6 +15,7 @@
 | ▶ AI 编程进阶（4 条） | ✅ **完成，待自测** | **[ai-engineering/](ai-engineering/README.md)** 读代码 / 重构 / 调试 / pytest，四节都有可跑脚本 |
 | ▶ 里程碑 1（3 道小题） | 🟡 **材料就位，代码待自己写** | **[ai-engineering/05-milestone/](ai-engineering/05-milestone/README.md)** 清洗 / 汇总 / 日志统计 + 17 项自动判分 |
 | ▶ 第 3 周 · Python 工程化规范 | ✅ **完成（2026-11-04）** | **[week3-package/](week3-package/README.md)** 规范化包 `devbasics`：src/tests/docs 分层 + pyproject.toml + black/ruff/pre-commit，40 项测试全过；讲解见 [docs/EXPLAIN.md](week3-package/docs/EXPLAIN.md) |
+| ▶ 第 4 周 · LLM 应用开发入门 | ✅ **Demo 跑通（2026-11-18）** | **[week4-rag/](week4-rag/README.md)** 智谱 `glm-4-flash` + `embedding-3` 文档问答，核心版 + LangChain 版，`verify.py` 5/5 通过；交付物「一页架构说明」见 [docs/ARCHITECTURE.md](week4-rag/docs/ARCHITECTURE.md) |
 | ▶ 参考资料 | ⚪ 仅供参考，非任务来源 | `ai-plan/`（12 周计划+看板，任务一律以用户自己的清单为准）· `week2-llm/`（API 练习成品，已跑通智谱 glm-4-flash，2026-10-27） |
 
 ---
@@ -201,3 +202,22 @@ git push
 
 （凭证已缓存，不会再要求登录。）推完可以再跑一次 `git status` 确认显示
 `Your branch is up to date with 'origin/main'`。
+
+---
+
+## ✅ 第 4 周 · LLM 应用开发入门（2026-11-18）
+
+任务卡三项学习内容 + 两个交付物，全部落在 [week4-rag/](week4-rag/README.md)。
+
+- [x] 大模型基本概念：Token / 上下文窗口 / 温度 / System Prompt（11-12 已讲解，参数含义写进 `config.py` 注释与 [架构说明](week4-rag/docs/ARCHITECTURE.md)）
+- [x] 调用 LLM API（OpenAI 兼容接口 / 国产模型）：沿用第 2 周的智谱凭据，`rag.py` 里 chat 与 embeddings 两个端点都实跑通过
+- [x] 动手做 RAG Demo：`rag.py` 零框架版 + `langchain_demo.py` 框架版，文档问答、片段带来源标题
+- [x] 交付物 1：可运行 RAG Demo（`ask.py` / `verify.py`）
+- [x] 交付物 2：[一页架构说明](week4-rag/docs/ARCHITECTURE.md)（六环节 + 链路图 + 限制与下一步）
+
+**实测数据**（不是估算）：chat 与 embedding 均 HTTP 200；7 个片段、256 维；单次问答 292 输入 / 24 输出 token；
+相似度资料内 0.634~0.697、资料外 0.485~0.489，阈值据此定为 0.55；`verify.py` **5/5 通过**。
+
+**还需用户自己做**：把 `data/team-handbook.md` 换成真实团队文档，重跑 `--rebuild`，
+按 `verify.py` 打印的分数重新标定 `MIN_SCORE`，并用真实问题改写验收用例。
+另：概念部分要求「能复述思路」，自检三问放在 week4-rag/README.md 末尾。
